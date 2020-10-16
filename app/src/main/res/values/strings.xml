@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Test</string>
+    <string name="poetry">诗词</string>
+    <string name="my">我的</string>
+    <string name="showImage">图片显示</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="recommended_today">今日荐诗</string>
+    <string name="slant_bar">/</string>
+    <string name="title">古诗题目</string>
+    <string name="dynasty">朝代</string>
+    <string name="author">作者</string>
+    <string name="first">第一句</string>
+    <string name="chinese_image">国风背景图</string>
+    <string name="tips">请输入关键词</string>
+    <string name="search">搜索</string>
+    <string name="hot_search">热门搜索</string>
+    <string name="no_idea">没有想法？</string>
+</resources>

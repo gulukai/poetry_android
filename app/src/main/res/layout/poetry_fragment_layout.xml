@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_linear_poetry_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="9dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/search_poetry_fragment"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_search_poetry" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/poetry"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/classification_poetry_fragment"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_classification_poetry" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/TabLayout_poetry_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F5F5F5"
+            android:overScrollMode="never"
+            app:tabIndicatorColor="#D1AE54"
+            app:tabMode="fixed"
+            app:tabRippleColor="#ffffff"
+            app:tabSelectedTextColor="#D1AE54" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D3D3D3" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/ViewPager_poetry_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

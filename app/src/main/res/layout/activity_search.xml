@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SearchActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:alpha="0.4"
+        android:contentDescription="@string/chinese_image"
+        android:scaleType="fitXY"
+        android:src="@drawable/guofeng" />
+
+    <TextView
+        android:id="@+id/back_search_activity"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/left_arrow" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="157dp"
+        android:layout_marginEnd="30dp"
+        android:alpha="0.9"
+        android:background="@drawable/frame_resource"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/ic_search_poetry" />
+
+        <EditText
+            android:id="@+id/edit_text_search_activity"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="@string/tips"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="#D3D3D3" />
+
+        <TextView
+            android:id="@+id/text_search_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/search"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="202dp"
+        android:layout_marginEnd="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/hot_search"
+            android:textSize="15sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_search_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/no_idea"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="看看  "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/classified_search_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="分类搜索"
+                android:textColor="@color/colorPrimary"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="有没有您想要的？"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</FrameLayout>
