@@ -1,9 +1,15 @@
 package com.example.test.data
 
 data class PoetryWithFirstData(
-    var title:String,
-    var dynasty:String,
-    var author:String,
-    var id:Int,
-    var first:String
+    val code: Int,
+    val `data`: List<PoetryWithFirstList>,
+    val msg: String
+)
+
+data class PoetryWithFirstList(
+    val author: String,
+    val dynasty: String,
+    val firstText: String,
+    val no: Int,
+    val title: String
 )

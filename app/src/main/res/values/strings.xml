@@ -16,4 +16,9 @@
     <string name="search">搜索</string>
     <string name="hot_search">热门搜索</string>
     <string name="no_idea">没有想法？</string>
+    <string name="text">正文</string>
+    <string name="annotation">注释</string>
+    <string name="translation">译文</string>
+    <string name="appreciation">赏析</string>
+    <string name="audio">音频</string>
 </resources>

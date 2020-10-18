@@ -13,7 +13,7 @@ import com.example.test.data.ItemData
 import com.example.test.functions.Common
 import com.example.test.functions.SpeacesItemDecoration
 import kotlinx.android.synthetic.main.activity_search.*
-import kotlinx.android.synthetic.main.poetry_list_item_layout.view.title_poetry_item
+import kotlinx.android.synthetic.main.hot_search_list_item_layout.view.*
 
 class SearchActivity : BaseActivity(), View.OnClickListener {
     private val hotSearchList = arrayListOf<ItemData>()
@@ -56,11 +56,11 @@ class SearchActivity : BaseActivity(), View.OnClickListener {
                     )
                 }
                 .setBindViewHolder { holder, position ->
-                    holder.itemView.title_poetry_item.text = hotSearchList[position].str
+                    holder.itemView.title_poetry_hot_search_item.text = hotSearchList[position].str
                     holder.itemView.setOnClickListener {
                         val intent = Intent(this, PoetryListActivity::class.java)
                         val bundle = Bundle()
-                        bundle.putString("作者", holder.itemView.title_poetry_item.text.toString())
+                        bundle.putString("作者", holder.itemView.title_poetry_hot_search_item.text.toString())
                         intent.putExtras(bundle)
                         startActivity(intent)
                     }

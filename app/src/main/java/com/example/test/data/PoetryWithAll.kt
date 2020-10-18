@@ -1,13 +1,7 @@
 package com.example.test.data
 
-data class PoetryDetailsData(
-    val code: Int,
-    val `data`: Data,
-    val msg: String
-)
-
-data class Data(
-    val `annotation`: String,
+data class PoetryWithAll(
+    val annotation: String,
     val appreciation: String,
     val author: String,
     val dynasty: String,

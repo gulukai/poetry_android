@@ -17,19 +17,24 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:gravity="center_vertical"
-        android:textSize="20sp" />
+        android:textSize="17sp" />
 
     <TextView
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:id="@+id/share_action_bar"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="#000000" />
+        android:layout_width="18dp"
+        android:layout_height="18dp" />
 
-    <TextView
+    <RadioButton
+        android:button="@null"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="15dp"
         android:id="@+id/collection_action_bar"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="#0000ff" />
+        android:layout_width="18dp"
+        android:layout_height="18dp" />
 
 </LinearLayout>

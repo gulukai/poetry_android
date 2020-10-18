@@ -1,12 +1,19 @@
 package com.example.test.poetryfragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.example.test.R
 import com.example.test.data.PoetryData
+import com.example.test.data.PoetryWithFirst
+import com.example.test.data.PoetryWithFirstData
+import com.example.test.data.PoetryWithFirstList
 import com.example.test.fragment.BaseFragment
+import com.example.test.functions.Common
 import com.example.test.functions.Lunar
 import com.example.test.functions.SolarTerm
+import com.example.test.netWork.CommonTask
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.one_fragment_layout.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -16,29 +23,50 @@ import kotlin.collections.ArrayList
 class OneFragment : BaseFragment(R.layout.one_fragment_layout) {
 
     private val poetryList = ArrayList<PoetryData>()
-    private val poetryId = ArrayList<Int>()
+    private val poetryId = ArrayList<String>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getTime()
+
+        getImage()
         val today: Calendar = Calendar.getInstance()
         val lunar = Lunar(today)
         val mLunar = lunar.cyclical() + "年" + lunar.toString() //这样就能获取当前的农历信息
         text_lunar_one_fragment.text = mLunar
         poetryList.clear()
+        var str = ""
         for (i in 0..4) {
             val num = (0..940).random()
-            poetryId.add(num)
+            poetryId.add(num.toString())
         }
+        for (i in poetryId) {
+            str += "$i,"
+        }
+        val commonTask = CommonTask()
+        commonTask.url = "http://www.gulukai.cn/poetry/getpoetry/?p1=getauthorid&p2=$str"
+        commonTask.setCallback {
+            val info = Gson().fromJson(it, PoetryWithFirstData::class.java)
+            val poetryWithFirstList = info.data
+            for (poetry in poetryWithFirstList) {
+                poetryList.add(
+                    PoetryData(poetry.title, poetry.dynasty, poetry.author, poetry.no)
+                )
+            }
+            Common().getPoetry(
+                recycler_one_fragment,
+                poetryList,
+                R.layout.poetry_item_layout,
+                this.activity!!,
+                this.context!!
+            )
+        }
+        commonTask.execute()
     }
 
 
-    fun getTime() {
+    private fun getImage() {
         val sdf = SimpleDateFormat("yyyy-MM-dd")
         val format: String = sdf.format(System.currentTimeMillis())
-//        val current = LocalDateTime.now()
-//        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-//        val formatted = current.format(formatter)
         text_show_time_one_fragment.text = format
         val timeList = format.split("-")
         val timeList2 = mutableListOf<Int>()
@@ -124,5 +152,4 @@ class OneFragment : BaseFragment(R.layout.one_fragment_layout) {
             }
         }
     }
-
 }
