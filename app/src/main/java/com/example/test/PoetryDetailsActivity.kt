@@ -7,10 +7,7 @@ import androidx.fragment.app.Fragment
 import com.example.test.base.BaseActivity
 import com.example.test.data.PoetryDetailsData
 import com.example.test.netWork.CommonTask
-import com.example.test.poetrydetailsfragment.AnnotationFragment
-import com.example.test.poetrydetailsfragment.AppreciationFragment
-import com.example.test.poetrydetailsfragment.TextFragment
-import com.example.test.poetrydetailsfragment.TranslationFragment
+import com.example.test.poetrydetailsfragment.*
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_poetry_details.*
 
@@ -48,6 +45,9 @@ class PoetryDetailsActivity : BaseActivity() {
             }
             appreciation_radio_button.setOnClickListener {
                 changeTabInDetails(AppreciationFragment(title, appreciation))
+            }
+            author_radio_button.setOnClickListener {
+                changeTabInDetails(AuthorIntroductionFragment(author))
             }
             text_radio_button.setOnClickListener {
                 changeTabInDetails(TextFragment(text, author, dynasty, title, tag))

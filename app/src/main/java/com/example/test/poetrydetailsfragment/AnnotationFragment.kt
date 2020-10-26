@@ -12,7 +12,7 @@ class AnnotationFragment(private val title: String, private val annotation: Stri
         super.onViewCreated(view, savedInstanceState)
         title_annotation_fragment.text = title
         if (annotation == "") {
-            context_annotation_fragment.text = "该古诗尚无注释"
+            context_annotation_fragment.text = "该古诗尚无注释。"
         } else {
             context_annotation_fragment.text = "\t\t\t\t" + annotation
         }

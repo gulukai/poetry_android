@@ -15,5 +15,4 @@ open class BaseFragment(private val resource: Int) : Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(resource, container, false)
     }
-
 }

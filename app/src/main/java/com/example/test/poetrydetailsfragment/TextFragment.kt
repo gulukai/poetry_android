@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
 import com.example.test.adapter.MyRecyclerViewAdapter
 import com.example.test.data.TextData
@@ -32,13 +31,9 @@ class TextFragment(
             .replace("。", "。￥").replace("“", "")
             .replace("”", "").replace("？", "？￥")
             .replace("！", "！￥").split("￥")
-//        Log.i("Tag", "'$text'")
-        Log.i("Tag", textList.size.toString())
         for (text in 0..textList.size - 2) {
-            Log.i("Tag", textList[text])
             textArrayList.add(TextData(textList[text]))
         }
-//        initData(textList)
         recycler_text_fragment.adapter =
             MyRecyclerViewAdapter.Builder().setDate(textArrayList).setViewHolder { parent, _ ->
                 return@setViewHolder MyRecyclerViewAdapter().ViewHolder(
@@ -51,11 +46,4 @@ class TextFragment(
         recycler_text_fragment.layoutManager =
             MyLayoutManager(this.activity!!, LinearLayoutManager.VERTICAL, false)
     }
-
-//    private fun initData(list: List<String>) {
-//        for (text in 0..list.size - 2) {
-//            Log.i("Tag",list.size)
-//            textArrayList.add(TextData(list[text]))
-//        }
-//    }
 }

@@ -12,7 +12,7 @@ class TranslationFragment(private val title: String, private val translation: St
         super.onViewCreated(view, savedInstanceState)
         title_translation_fragment.text = title
         if (translation == "") {
-            context_translation_fragment.text = "该古诗尚无翻译"
+            context_translation_fragment.text = "该古诗尚无翻译。"
         } else {
             context_translation_fragment.text = "\t\t\t\t" + translation
         }

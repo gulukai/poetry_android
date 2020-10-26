@@ -14,13 +14,15 @@ import com.example.test.adapter.MyRecyclerViewAdapter
 import com.example.test.data.ItemData
 import com.example.test.data.PoetryData
 import com.example.test.data.PoetryWithFirst
-import com.example.test.data.PoetryWithFirstData
 import com.example.weatherapp.adapter.MyLayoutManager
-import kotlinx.android.synthetic.main.poetry_item_layout.view.author_poetry_item
-import kotlinx.android.synthetic.main.poetry_item_layout.view.dynasty_poetry_item
-import kotlinx.android.synthetic.main.poetry_item_layout.view.title_poetry_item
+import kotlinx.android.synthetic.main.poetry_item_layout.view.*
 import kotlinx.android.synthetic.main.poetry_item_with_first_layout.view.*
 import kotlinx.android.synthetic.main.poetry_list_item_layout.view.*
+import okhttp3.FormBody
+import okhttp3.RequestBody
+import java.util.HashMap
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 class Common {
     fun getPoetry(
@@ -115,5 +117,37 @@ class Common {
             }
             toast?.show()
         }
+    }
+
+    /**
+     * 手机号验证
+     * @param str
+     * @return 验证通过返回true
+     */
+    fun isMobile(str: String): Boolean {
+        var p: Pattern? = null
+        var m: Matcher? = null
+        var b = false
+        p = Pattern.compile("^[1][3,4,5,7,8][0-9]{9}$") // 验证手机号
+        m = p.matcher(str)
+        b = m.matches()
+        return b
+    }
+
+    fun buildParams(param: Map<String, String>?): RequestBody {
+        var params: Map<String, String>? = param
+        if (params == null) {
+            params = HashMap<String, String>()
+        }
+        val builder = FormBody.Builder()
+        for (entry in params.entries) {
+            val key = entry.key
+            var value: String? = entry.value
+            if (value == null) {
+                value = ""
+            }
+            builder.add(key, value)
+        }
+        return builder.build()
     }
 }

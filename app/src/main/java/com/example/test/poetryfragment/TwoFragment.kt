@@ -19,6 +19,7 @@ class TwoFragment : BaseFragment(R.layout.two_fragment_layout) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         poetryList.clear()
+        poetryId.clear()
         var str = ""
         for (i in 0..14) {
             val num = (0..940).random()

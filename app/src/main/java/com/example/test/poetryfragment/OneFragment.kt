@@ -34,6 +34,7 @@ class OneFragment : BaseFragment(R.layout.one_fragment_layout) {
         val mLunar = lunar.cyclical() + "年" + lunar.toString() //这样就能获取当前的农历信息
         text_lunar_one_fragment.text = mLunar
         poetryList.clear()
+        poetryId.clear()
         var str = ""
         for (i in 0..4) {
             val num = (0..940).random()

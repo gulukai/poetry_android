@@ -12,7 +12,7 @@ class AppreciationFragment(private val title: String, private val appreciation: 
         super.onViewCreated(view, savedInstanceState)
         title_appreciation_fragment.text = title
         if (appreciation == "") {
-            context_appreciation_fragment.text = "该古诗尚无赏析"
+            context_appreciation_fragment.text = "该古诗尚无赏析。"
         } else {
             context_appreciation_fragment.text = "\t\t\t\t" + appreciation
         }

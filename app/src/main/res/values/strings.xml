@@ -20,5 +20,16 @@
     <string name="annotation">注释</string>
     <string name="translation">译文</string>
     <string name="appreciation">赏析</string>
-    <string name="audio">音频</string>
+    <string name="background_image">background_image</string>
+    <string name="my_background">我的背景图片</string>
+    <string name="user_name">user_name</string>
+    <string name="gender">gender</string>
+    <string name="fans">粉丝：</string>
+    <string name="follow">关注：</string>
+    <string name="function_bar_image">function_bar_image</string>
+    <string name="gollum">请输入咕噜号</string>
+    <string name="password">请输入密码</string>
+    <string name="register">注册新用户</string>
+    <string name="retrieve_password">找回密码</string>
+    <string name="gulu_poetry">咕噜诗词</string>
 </resources>

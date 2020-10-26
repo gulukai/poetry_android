@@ -60,7 +60,10 @@ class SearchActivity : BaseActivity(), View.OnClickListener {
                     holder.itemView.setOnClickListener {
                         val intent = Intent(this, PoetryListActivity::class.java)
                         val bundle = Bundle()
-                        bundle.putString("作者", holder.itemView.title_poetry_hot_search_item.text.toString())
+                        bundle.putString(
+                            "作者",
+                            holder.itemView.title_poetry_hot_search_item.text.toString()
+                        )
                         intent.putExtras(bundle)
                         startActivity(intent)
                     }
