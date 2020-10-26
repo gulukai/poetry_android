@@ -3,6 +3,7 @@ package com.example.test
 import ResponseData
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.test.base.BaseActivity
+import com.example.test.db.MyDbHelper
 import com.example.test.functions.Common
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_register.*
@@ -125,9 +127,30 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
                                     val info =
                                         Gson().fromJson(responseData, ResponseData::class.java)
                                     val gollum = info.data.user_no
+
+                                    val time = System.currentTimeMillis()
+                                    /*
+                                    " id integer primary key autoincrement," +
+                                    "is_login integer," +
+                                    "username text," +
+                                    "gollum text," +
+                                    "current text," +
+                                    "pwd text)"
+                                    * */
+                                    val dbHelper = MyDbHelper(this@RegisterActivity, "User.db", 1)
+                                    val db = dbHelper.writableDatabase
+                                    val value = ContentValues().apply {
+                                        put("is_login", 1)
+                                        put("username", nick)
+                                        put("gollum", gollum)
+                                        put("current", time.toString())
+                                        put("pwd", pwd)
+                                    }
+                                    db.insert("User", null, value)
                                     val intent =
                                         Intent(this@RegisterActivity, LoginActivity::class.java)
-                                    intent.putExtra("gollum", gollum)
+                                    intent.putExtra("gollum", gollum.toLong())
+                                    intent.putExtra("message", "注册成功！")
                                     startActivity(intent)
                                 }
                             }

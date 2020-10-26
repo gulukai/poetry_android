@@ -10,9 +10,11 @@ import com.example.test.R
 import com.example.test.functions.Change
 import kotlinx.android.synthetic.main.my_fragment_layout.*
 
-class MineFragment : BaseFragment(R.layout.my_fragment_layout) {
+class MineFragment(private val gollum: Long) : BaseFragment(R.layout.my_fragment_layout) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Log.i("Tag", gollum.toString())
         collection_my_fragment.setStyle { image, text ->
             image.setImageResource(R.drawable.collection)
             text.text = "我的收藏"

@@ -1,5 +1,8 @@
 package com.example.test
 
+import android.content.ContentValues
+import android.content.Intent
+import android.database.Cursor
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -7,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.test.base.ActivityCollector
 import com.example.test.base.BaseActivity
+import com.example.test.data.UserData
 import com.example.test.db.MyDbHelper
 import com.example.test.fragment.MineFragment
 import com.example.test.fragment.PoetryFragment
@@ -17,7 +21,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity(), View.OnClickListener {
     private var time1: Long = 0
     private var time2: Long = 0
-
+    private val dbHelper = MyDbHelper(this, "User.db", 1)
+    private val userData = ArrayList<UserData>()
+    private val longTime = 60 * 60 * 24 * 30
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,29 +33,14 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         poetry_rb_main.setOnClickListener(this)
         zanding_rb_main.setOnClickListener(this)
         mine_rb_main.setOnClickListener(this)
-        val dbHelper = MyDbHelper(this, "User.db", 1)
-        val db = dbHelper.writableDatabase
-        val cursor = db.query("User", null, null, null, null, null, null)
-        if (cursor.moveToFirst()) {
-            /*
-            " id integer primary key autoincrement," +
-            "is_login integer," +
-            "username text," +
-            "gollum text," +
-            "pwd text)"
-            * */
-            do {
-                val is_login = cursor.getInt(cursor.getColumnIndex("is_login"))
-                val pwd = cursor.getInt(cursor.getColumnIndex("pwd"))
-                val username = cursor.getString(cursor.getColumnIndex("username"))
-                val gollum = cursor.getString(cursor.getColumnIndex("gollum"))
-                val current = cursor.getString(cursor.getColumnIndex("current"))
 
-            } while (cursor.moveToNext())
-        }else{
-            Toast.makeText(this, "表中没有数据", Toast.LENGTH_LONG).show()
+        val num = intent.getIntExtra("login", 1)
+        Log.i("Tag", "num:$num")
+        if (num == 99) {
+            val gollum = intent.getLongExtra("user_no", 1)
+            mine_rb_main.isChecked = true
+            changeTab(MineFragment(gollum))
         }
-        cursor.close()
     }
 
     private fun changeTab(fragment: Fragment, container: Int = R.id.container_main) {
@@ -66,8 +57,90 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 changeTab(ZandingFragment())
             }
             mine_rb_main -> {
-                Common().goActivity(this, LoginActivity::class.java)
-//                    changeTab(MineFragment())
+                var loginNum = 0
+                var gollumNum: Long = 0
+                val db = dbHelper.writableDatabase
+                val cursor = db.query("User", null, null, null, null, null, null)
+                if (cursor.moveToFirst()) {
+                    /*
+                    " id integer primary key autoincrement," +
+                    "is_login integer," +
+                    "username text," +
+                    "gollum text," +
+                    "pwd text)"
+                    * */
+                    var a: Long = 0
+                    do {
+                        val isLogin = cursor.getInt(cursor.getColumnIndex("is_login"))
+                        val pwd = cursor.getString(cursor.getColumnIndex("pwd"))
+                        val username = cursor.getString(cursor.getColumnIndex("username"))
+                        val gollum = cursor.getString(cursor.getColumnIndex("gollum"))
+                        val current = cursor.getString(cursor.getColumnIndex("current"))
+                        val currentMarked = current.toLong()
+                        /*
+                        var idLogin: Int,
+                        var username: String,
+                        var gollum: String,
+                        var pwd: String,
+                        var current: Long
+                        *
+                        * */
+                        userData.add(
+                            UserData(
+                                isLogin,
+                                username,
+                                gollum,
+                                pwd,
+                                currentMarked
+                            )
+                        )
+                        for (user in userData) {
+                            if (user.current > a) {
+                                a = user.current
+                                loginNum = user.isLogin
+                                gollumNum = user.gollum.toLong()
+                            }
+                        }
+                    } while (cursor.moveToNext())
+                    val timeOfNow = System.currentTimeMillis()
+                    val timeDifferent = (timeOfNow - a) / 1000
+                    if (timeDifferent > longTime || timeDifferent < 0) {
+                        val values = ContentValues()
+                        values.put("is_login", 2)
+                        values.put("pwd", "")
+                        values.put("current", timeOfNow)
+                        val rows =
+                            db.update("User", values, "gollum = ?", arrayOf(gollumNum.toString()))
+                        Log.i("Tag", "rows:$rows")
+                        loginNum = 2
+                    }
+                } else {
+                    //未登录过账号
+                    val intent = Intent(this, LoginActivity::class.java)
+                    intent.putExtra("message", "请登录")
+                    startActivity(intent)
+                }
+                cursor.close()
+                when (loginNum) {
+                    0 -> {
+                        //未登录过
+                        val intent = Intent(this, LoginActivity::class.java)
+                        intent.putExtra("message", "请登录")
+                        startActivity(intent)
+                    }
+                    1 -> {
+                        //两次登录的时间间隔可以，，直接跳转我的页面
+                        changeTab(MineFragment(gollumNum))
+
+                    }
+                    2 -> {
+                        //时间间隔太长，重新登录
+                        val intent = Intent(this, LoginActivity::class.java)
+                        intent.putExtra("message", "密码失效，请重新登录")
+                        intent.putExtra("gollum", gollumNum)
+                        startActivity(intent)
+                    }
+                }
             }
         }
     }
