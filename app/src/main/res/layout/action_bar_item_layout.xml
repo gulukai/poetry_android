@@ -17,24 +17,33 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:maxLines="1"
         android:ellipsize="end"
         android:gravity="center_vertical"
+        android:maxLines="1"
         android:textSize="17sp" />
 
     <TextView
+        android:id="@+id/hear_action_bar"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp" />
+
+    <ToggleButton
+        android:id="@+id/collection_action_bar"
+        android:textOn=""
+        android:textOff=""
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:id="@+id/share_action_bar"
-        android:layout_width="18dp"
-        android:layout_height="18dp" />
+        android:button="@null" />
 
-    <RadioButton
-        android:button="@null"
+    <TextView
+        android:id="@+id/share_action_bar"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="15dp"
-        android:id="@+id/collection_action_bar"
-        android:layout_width="18dp"
-        android:layout_height="18dp" />
+        android:layout_marginEnd="15dp" />
 
 </LinearLayout>

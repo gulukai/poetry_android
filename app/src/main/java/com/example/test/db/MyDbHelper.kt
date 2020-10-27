@@ -14,10 +14,13 @@ class MyDbHelper(val context: Context, name: String, version: Int) :
             "gollum text," +
             "current text," +
             "pwd text)"
+    private val poetryCollectionTable = "create table PoetryCollection (" +
+            " id integer primary key autoincrement," +
+            "poetry_no integer)"
 
     override fun onCreate(db: SQLiteDatabase) {
-        Common.myToast(context, "建表成功了！")
         db.execSQL(userTable)
+        db.execSQL(poetryCollectionTable)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

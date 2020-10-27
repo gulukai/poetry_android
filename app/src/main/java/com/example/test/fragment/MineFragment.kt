@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import com.example.test.PoetryCollectionActivity
 import com.example.test.R
 import com.example.test.functions.Change
+import com.example.test.functions.Common
 import kotlinx.android.synthetic.main.my_fragment_layout.*
 
 class MineFragment(private val gollum: Long) : BaseFragment(R.layout.my_fragment_layout) {
@@ -43,6 +45,10 @@ class MineFragment(private val gollum: Long) : BaseFragment(R.layout.my_fragment
             } catch (e: Exception) {
                 Log.d("Tag", e.toString())
             }
+        }
+
+        collection_my_fragment.setOnClickListener {
+            Common().goActivity(this.context!!, PoetryCollectionActivity::class.java)
         }
     }
 

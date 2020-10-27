@@ -100,7 +100,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                                                 arrayOf(gollum_login_activity.text.toString())
                                             )
                                         Log.i("Tag", "rows:$rows")
-                                        if (rows != 1){
+                                        if (rows != 1) {
                                             val value = ContentValues().apply {
                                                 put("is_login", 1)
                                                 put("username", nickName)
@@ -116,7 +116,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                                             "user_no",
                                             gollum_login_activity.text.toString().toLong()
                                         )
-                                        intent.putExtra("login",99)
+                                        intent.putExtra("login", 99)
                                         startActivity(intent)
                                         Looper.loop()
                                     }

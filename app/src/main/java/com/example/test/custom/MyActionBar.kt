@@ -3,8 +3,10 @@ package com.example.test.custom
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.ToggleButton
 import com.example.test.R
 import kotlinx.android.synthetic.main.action_bar_item_layout.view.*
 
@@ -17,11 +19,11 @@ class MyActionBar(context: Context?, attrs: AttributeSet?) :
         LayoutInflater.from(context).inflate(R.layout.action_bar_item_layout, this, true)
     }
 
-    private var style: ((back: TextView, txt: TextView, share: TextView, collection: TextView) -> Unit)? =
+    private var style: ((back: TextView, txt: TextView, hear: TextView, collection: ToggleButton, share: TextView) -> Unit)? =
         null
 
-    fun setStyle(style: ((back: TextView, txt: TextView, share: TextView, collection: TextView) -> Unit)) {
+    fun setStyle(style: ((back: TextView, txt: TextView, hear: TextView, collection: ToggleButton, share: TextView) -> Unit)) {
         this.style = style
-        style.invoke(back_action_bar, text_action_bar, share_action_bar, collection_action_bar)
+        style.invoke(back_action_bar, text_action_bar, hear_action_bar, collection_action_bar, share_action_bar)
     }
 }

@@ -53,6 +53,5 @@ class TwoFragment : BaseFragment(R.layout.two_fragment_layout) {
             )
         }
         commonTask.execute()
-
     }
 }

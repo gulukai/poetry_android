@@ -29,13 +29,14 @@ class ScreenActivity : BaseActivity() {
         for (i in 0 until tagList.size) {
             tab_layout_screen.getTabAt(i)?.text = tagList[i]
         }
-        action_bar_screen.setStyle { back, txt, share, collection ->
+        action_bar_screen.setStyle { back, txt, hear, collection, share ->
             back.setOnClickListener {
                 finish()
             }
             txt.text = "筛选"
-            share.visibility = View.GONE
+            hear.visibility = View.GONE
             collection.visibility = View.GONE
+            share.visibility = View.GONE
         }
     }
 }

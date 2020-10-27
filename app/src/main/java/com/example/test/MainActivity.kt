@@ -35,12 +35,13 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         mine_rb_main.setOnClickListener(this)
 
         val num = intent.getIntExtra("login", 1)
-        Log.i("Tag", "num:$num")
         if (num == 99) {
             val gollum = intent.getLongExtra("user_no", 1)
             mine_rb_main.isChecked = true
             changeTab(MineFragment(gollum))
         }
+
+        getUserMain()
     }
 
     private fun changeTab(fragment: Fragment, container: Int = R.id.container_main) {
@@ -57,6 +58,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 changeTab(ZandingFragment())
             }
             mine_rb_main -> {
+                userData.clear()
                 var loginNum = 0
                 var gollumNum: Long = 0
                 val db = dbHelper.writableDatabase
@@ -122,12 +124,12 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 }
                 cursor.close()
                 when (loginNum) {
-                    0 -> {
-                        //未登录过
-                        val intent = Intent(this, LoginActivity::class.java)
-                        intent.putExtra("message", "请登录")
-                        startActivity(intent)
-                    }
+//                    0 -> {
+//                        //未登录过
+//                        val intent = Intent(this, LoginActivity::class.java)
+//                        intent.putExtra("message", "请登录")
+//                        startActivity(intent)
+//                    }
                     1 -> {
                         //两次登录的时间间隔可以，，直接跳转我的页面
                         changeTab(MineFragment(gollumNum))
@@ -154,5 +156,57 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             ActivityCollector.finishAllActivity()
         }
 
+    }
+
+    private fun getUserMain() {
+        userData.clear()
+        var loginNum = 0
+        var gollumNum: Long = 0
+        val db = dbHelper.writableDatabase
+        val cursor = db.query("User", null, null, null, null, null, null)
+        if (cursor.moveToFirst()) {
+            var a: Long = 0
+            do {
+                val isLogin = cursor.getInt(cursor.getColumnIndex("is_login"))
+                val pwd = cursor.getString(cursor.getColumnIndex("pwd"))
+                val username = cursor.getString(cursor.getColumnIndex("username"))
+                val gollum = cursor.getString(cursor.getColumnIndex("gollum"))
+                val current = cursor.getString(cursor.getColumnIndex("current"))
+                val currentMarked = current.toLong()
+                userData.add(
+                    UserData(
+                        isLogin,
+                        username,
+                        gollum,
+                        pwd,
+                        currentMarked
+                    )
+                )
+                for (user in userData) {
+                    if (user.current > a) {
+                        a = user.current
+                        loginNum = user.isLogin
+                        gollumNum = user.gollum.toLong()
+                    }
+                }
+            } while (cursor.moveToNext())
+            val timeOfNow = System.currentTimeMillis()
+            val timeDifferent = (timeOfNow - a) / 1000
+            if (timeDifferent > longTime || timeDifferent < 0) {
+                val values = ContentValues()
+                values.put("is_login", 2)
+                val rows =
+                    db.update("User", values, "gollum = ?", arrayOf(gollumNum.toString()))
+                Log.i("Tag", "rows:$rows")
+                loginNum = 2
+            }
+            if (loginNum == 1) {
+                val values = ContentValues()
+                values.put("current", timeOfNow)
+                val rows =
+                    db.update("User", values, "gollum = ?", arrayOf(gollumNum.toString()))
+                Log.i("Tag", "rows:$rows")
+            }
+        }
     }
 }

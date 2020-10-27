@@ -26,27 +26,28 @@ class PoetryListActivity : BaseActivity() {
                 }
                 "朝代" -> {
                     val str = bundle.getString("朝代")
-                    getPoetryList("dynasty",str.toString())
+                    getPoetryList("dynasty", str.toString())
                 }
                 "题目" -> {
                     val str = bundle.getString("题目")
-                    getPoetryList("title",str.toString())
+                    getPoetryList("title", str.toString())
                 }
                 "作者" -> {
                     val str = bundle.getString("作者")
-                    getPoetryList("author",str.toString())
+                    getPoetryList("author", str.toString())
                 }
                 "标签" -> {
                     val str = bundle.getString("标签")
-                    getPoetryList("tag",str.toString())
+                    getPoetryList("tag", str.toString())
                 }
             }
 
-            action_bar_poetry_list.setStyle { back, txt, share, collection ->
+            action_bar_poetry_list.setStyle { back, txt, hear, collection, share ->
                 back.setOnClickListener {
                     finish()
                 }
                 txt.text = "古诗词列表"
+                hear.visibility = View.GONE
                 share.visibility = View.GONE
                 collection.visibility = View.GONE
             }
