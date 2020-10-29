@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.example.test.base.BaseActivity
+import com.example.test.base.User
 import com.example.test.data.LoginData
 import com.example.test.db.MyDbHelper
 import com.example.test.functions.Common
@@ -111,6 +112,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                                             }
                                             db.insert("User", null, value)
                                         }
+                                        User.user_no = gollum_login_activity.text.toString().toLong()
                                         val intent =
                                             Intent(this@LoginActivity, MainActivity::class.java)
                                         intent.putExtra(

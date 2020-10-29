@@ -13,6 +13,7 @@ import com.example.test.base.User
 import com.example.test.data.CommentData
 import com.example.test.data.CommentDataItem
 import com.example.test.functions.Common
+import com.example.test.mydialog.CommentDialog
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_comment_list.*
 import kotlinx.android.synthetic.main.comment_list_layout.view.*
@@ -27,8 +28,37 @@ class CommentActivityList : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comment_list)
-
-        Log.i("Tag", User.user_no.toString())
+        val poetryId = intent.getIntExtra("poetryId", 0)
+        Log.i("Tag", poetryId.toString())
+        edit_text_comment_list.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                if (User.user_no == 0L) {
+                    Common.myToast(this, "请先登录！")
+                } else {
+                    Log.i("'Tag", User.user_no.toString())
+                    Common().setDontShowSoftInputWhenFocused(edit_text_comment_list)
+                    val dialog = CommentDialog(this)
+                    dialog.setCancelable(false)
+                    dialog.show()
+                    dialog.setStyle { comment, cancel, release ->
+                        release.setOnClickListener {
+                            Log.i("Tag", comment.text.toString())
+                            postComment(
+                                poetryId.toString(),
+                                User.user_no.toString(),
+                                comment.text.toString()
+                            )
+                            edit_text_comment_list.clearFocus()
+                            dialog.dismiss()
+                        }
+                        cancel.setOnClickListener {
+                            edit_text_comment_list.clearFocus()
+                            dialog.dismiss()
+                        }
+                    }
+                }
+            }
+        }
 
         action_comment_list_activity.setStyle { back, txt, hear, collection, share ->
             back.setOnClickListener {
@@ -40,7 +70,7 @@ class CommentActivityList : BaseActivity() {
             share.visibility = View.GONE
         }
 
-        val poetryId = intent.getIntExtra("poetryId", 0)
+
         getCommentList(poetryId)
         handler = Handler {
             when (it.what) {
@@ -114,6 +144,45 @@ class CommentActivityList : BaseActivity() {
                         message.what = 1
                         message.obj = responseData
                         handler.sendMessage(message)
+                    }
+                }
+            })
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun postComment(poetryId: String, gollum: String, text: String) {
+        /*
+        * method = request.POST.get("method")
+          comment_poetry = request.POST.get("poetry_id")
+          comment_user = request.POST.get("user_id")
+          comment_text = request.POST.get("text")
+          comment_time = request.POST.get("time")
+        * */
+        val time = System.currentTimeMillis().toString()
+        try {
+            val params = mapOf<String, String>(
+                "method" to "post",
+                "poetry_id" to poetryId,
+                "user_id" to gollum,
+                "text" to text,
+                "time" to time
+            )
+            val body = Common().buildParams(params)
+            val client = OkHttpClient()
+            val request =
+                Request.Builder().url("http://www.gulukai.cn/comment/postcomment/").post(body)
+                    .build()
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val responseData = response.body?.string()
+                    if (responseData != null) {
+                        Log.i("Tag", responseData)
                     }
                 }
             })

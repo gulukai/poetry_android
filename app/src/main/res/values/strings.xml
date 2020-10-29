@@ -32,4 +32,6 @@
     <string name="register">注册新用户</string>
     <string name="retrieve_password">找回密码</string>
     <string name="gulu_poetry">咕噜诗词</string>
+    <string name="cancel">取消</string>
+    <string name="release">发布</string>
 </resources>
