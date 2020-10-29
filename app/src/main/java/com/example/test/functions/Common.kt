@@ -111,7 +111,7 @@ class Common {
         var toast: Toast? = null
         fun myToast(context: Context, message: String) {
             if (toast == null) {
-                toast = Toast.makeText(context, message, Toast.LENGTH_LONG)
+                toast = Toast.makeText(context, message, Toast.LENGTH_SHORT)
             } else {
                 toast!!.setText(message)
             }

@@ -1,10 +1,16 @@
 package com.example.test
 
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Message
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.test.base.BaseActivity
+import com.example.test.data.CommentData
+import com.example.test.data.CommentDataList
 import com.example.test.data.PoetryDetailsData
 import com.example.test.db.MyDbHelper
 import com.example.test.functions.Common
@@ -12,19 +18,42 @@ import com.example.test.netWork.CommonTask
 import com.example.test.poetrydetailsfragment.*
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_poetry_details.*
+import okhttp3.*
+import java.io.IOException
+import java.lang.Exception
 
 class PoetryDetailsActivity : BaseActivity() {
     private val myHelper = MyDbHelper(this, "User.db", 1)
+    private var handle = Handler()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_poetry_details)
         val db = myHelper.writableDatabase
-        comment_poetry_details_activity.setStyle { image, text ->
-            text.text = "这首诗有0条评论"
-            image.visibility = View.GONE
-        }
-
         val poetryId = intent.getIntExtra("poetryId", 1)
+        getCommentCount(poetryId)
+
+        handle = Handler {
+            when (it.arg1) {
+                200 -> {
+                    comment_poetry_details_activity.setStyle { image, text ->
+                        text.text = "这首诗有${it.arg2}条评论"
+                        image.visibility = View.GONE
+                    }
+                }
+                202 -> {
+                    comment_poetry_details_activity.setStyle { image, text ->
+                        text.text = "这首诗有${it.arg2}条评论"
+                        image.visibility = View.GONE
+                    }
+                }
+            }
+            return@Handler true
+        }
+        comment_poetry_details_activity.setOnClickListener {
+            val intent = Intent(this,CommentActivityList::class.java)
+            intent.putExtra("poetryId",poetryId)
+            startActivity(intent)
+        }
         val commTask = CommonTask()
         commTask.url = "http://www.gulukai.cn/poetry/getpoetry/?p1=getpoetrybyid&p2=$poetryId"
         commTask.setCallback {
@@ -100,6 +129,48 @@ class PoetryDetailsActivity : BaseActivity() {
             }
         }
         commTask.execute()
+    }
+
+
+    private fun getCommentCount(poetryId: Int) {
+        try {
+            val params = mapOf<String, String>(
+                "method" to "get",
+                "poetry_id" to "$poetryId"
+            )
+            val body = Common().buildParams(params)
+            val client = OkHttpClient()
+            val request =
+                Request.Builder().url("http://www.gulukai.cn/comment/postcomment/").post(body)
+                    .build()
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val responseData = response.body?.string()
+                    if (responseData != null) {
+                        Log.i("Tag", responseData)
+                        val info = Gson().fromJson(responseData, CommentData::class.java)
+                        if (info.code == 202) {
+                            val message = Message()
+                            message.arg1 = 202
+                            message.arg2 = info.count
+                            handle.sendMessage(message)
+                        } else {
+                            val message = Message()
+                            message.arg1 = 200
+                            message.arg2 = info.count
+                            handle.sendMessage(message)
+                        }
+                    }
+                }
+
+            })
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     private fun changeTabInDetails(fragment: Fragment, container: Int = R.id.frame_poetry_details) {

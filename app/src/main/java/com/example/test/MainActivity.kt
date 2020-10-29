@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.test.base.ActivityCollector
 import com.example.test.base.BaseActivity
+import com.example.test.base.User
 import com.example.test.data.UserData
 import com.example.test.db.MyDbHelper
 import com.example.test.fragment.MineFragment
@@ -64,13 +65,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 val db = dbHelper.writableDatabase
                 val cursor = db.query("User", null, null, null, null, null, null)
                 if (cursor.moveToFirst()) {
-                    /*
-                    " id integer primary key autoincrement," +
-                    "is_login integer," +
-                    "username text," +
-                    "gollum text," +
-                    "pwd text)"
-                    * */
                     var a: Long = 0
                     do {
                         val isLogin = cursor.getInt(cursor.getColumnIndex("is_login"))
@@ -79,14 +73,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                         val gollum = cursor.getString(cursor.getColumnIndex("gollum"))
                         val current = cursor.getString(cursor.getColumnIndex("current"))
                         val currentMarked = current.toLong()
-                        /*
-                        var idLogin: Int,
-                        var username: String,
-                        var gollum: String,
-                        var pwd: String,
-                        var current: Long
-                        *
-                        * */
                         userData.add(
                             UserData(
                                 isLogin,
@@ -124,12 +110,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 }
                 cursor.close()
                 when (loginNum) {
-//                    0 -> {
-//                        //未登录过
-//                        val intent = Intent(this, LoginActivity::class.java)
-//                        intent.putExtra("message", "请登录")
-//                        startActivity(intent)
-//                    }
                     1 -> {
                         //两次登录的时间间隔可以，，直接跳转我的页面
                         changeTab(MineFragment(gollumNum))
@@ -187,6 +167,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                         a = user.current
                         loginNum = user.isLogin
                         gollumNum = user.gollum.toLong()
+                        User.user_no = user.gollum.toLong()
                     }
                 }
             } while (cursor.moveToNext())
@@ -208,5 +189,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 Log.i("Tag", "rows:$rows")
             }
         }
+        cursor.close()
     }
 }

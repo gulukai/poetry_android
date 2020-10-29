@@ -7,6 +7,7 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.example.test.base.BaseActivity
 import com.example.test.data.LoginData
@@ -17,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.*
 import java.io.IOException
 
-class LoginActivity : BaseActivity(), View.OnClickListener {
+class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private val dbHelper = MyDbHelper(this, "User.db", 1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
