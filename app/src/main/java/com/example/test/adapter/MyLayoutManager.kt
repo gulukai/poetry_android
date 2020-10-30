@@ -94,7 +94,6 @@ class MyLayoutManager(context: Context, orientation: Int, reverseLayout: Boolean
             }
         }
         setMeasuredDimension(widthSize, height)
-        Log.i("myNews", "到这了")
     }
 
     override fun canScrollVertically(): Boolean {
