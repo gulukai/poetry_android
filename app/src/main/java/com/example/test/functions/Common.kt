@@ -162,12 +162,13 @@ class Common {
                 "setShowSoftInputOnFocus",
                 Boolean::class.javaPrimitiveType
             )
-            setShowSoftInputOnFocus.setAccessible(true)
+            setShowSoftInputOnFocus.isAccessible = true
             setShowSoftInputOnFocus.invoke(editText, false)
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
+
 
     fun changeTime(time: String): String {
         val currentTime = System.currentTimeMillis()

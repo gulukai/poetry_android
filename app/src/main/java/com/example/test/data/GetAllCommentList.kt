@@ -8,6 +8,7 @@ data class GetAllCommentList(
 )
 
 data class AllCommentList(
+    val gollum: Int,
     val head: String,
     val nickname: String,
     val poetry_id: Int,

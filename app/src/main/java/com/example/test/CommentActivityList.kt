@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.test.adapter.MyRecyclerViewAdapter
 import com.example.test.base.BaseActivity
 import com.example.test.base.User
@@ -23,7 +24,6 @@ import java.lang.Exception
 
 class CommentActivityList : BaseActivity() {
     private val commentList = arrayListOf<CommentDataItem>()
-    private val a: Int = 1
     private var handler = Handler()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,9 +79,10 @@ class CommentActivityList : BaseActivity() {
                         Common.myToast(this@CommentActivityList, "该篇古诗暂无评论，你来占个沙发吧！")
                     } else {
                         for (item in info.data) {
+                            val headUrl = "http://www.gulukai.cn${item.head}"
                             commentList.add(
                                 CommentDataItem(
-                                    item.heard,
+                                    headUrl,
                                     item.nickname,
                                     item.time,
                                     item.text
@@ -99,7 +100,8 @@ class CommentActivityList : BaseActivity() {
                                         )
                                     )
                                 }.setBindViewHolder { holder, position ->
-//                                    holder.itemView.head_image_comment_list = commentList[position].head
+                                    Glide.with(this).load(commentList[position].headUrl)
+                                        .into(holder.itemView.head_image_comment_list)
                                     holder.itemView.nickname_comment_list.text =
                                         commentList[position].nickname
                                     holder.itemView.time_comment_list.text =
@@ -121,7 +123,7 @@ class CommentActivityList : BaseActivity() {
 
     private fun getCommentList(poetryId: Int) {
         try {
-            val params = mapOf<String, String>(
+            val params = mapOf(
                 "method" to "get",
                 "poetry_id" to "$poetryId"
             )
@@ -153,7 +155,7 @@ class CommentActivityList : BaseActivity() {
     private fun postComment(poetryId: String, gollum: String, text: String) {
         val time = System.currentTimeMillis().toString()
         try {
-            val params = mapOf<String, String>(
+            val params = mapOf(
                 "method" to "post",
                 "poetry_id" to poetryId,
                 "user_id" to gollum,

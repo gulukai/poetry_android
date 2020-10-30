@@ -1,14 +1,10 @@
 package com.example.test.fragment
 
-import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import com.example.test.PoetryCollectionActivity
 import com.example.test.R
-import com.example.test.functions.Change
 import com.example.test.functions.Common
 import kotlinx.android.synthetic.main.my_fragment_layout.*
 
@@ -17,6 +13,7 @@ class MineFragment(private val gollum: Long) : BaseFragment(R.layout.my_fragment
         super.onViewCreated(view, savedInstanceState)
 
         Log.i("Tag", gollum.toString())
+
         collection_my_fragment.setStyle { image, text ->
             image.setImageResource(R.drawable.collection)
             text.text = "我的收藏"
@@ -34,31 +31,8 @@ class MineFragment(private val gollum: Long) : BaseFragment(R.layout.my_fragment
             text.text = "关于我们"
         }
 
-        head_portrait_my_fragment.setOnClickListener {
-            try {
-                val i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                startActivityForResult(i, 99)
-            } catch (e: Exception) {
-                Log.d("Tag", e.toString())
-            }
-        }
-
         collection_my_fragment.setOnClickListener {
             Common().goActivity(this.context!!, PoetryCollectionActivity::class.java)
         }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        val revData = data?.extras
-        when (requestCode) {
-            99 -> {
-                val bitMap: Bitmap = revData?.get("data") as Bitmap
-                val str = Change().bitmapToString(bitMap, 100)
-                Log.i("Tag", str)
-                head_portrait_my_fragment.setImageBitmap(bitMap)
-            }
-        }
-
     }
 }

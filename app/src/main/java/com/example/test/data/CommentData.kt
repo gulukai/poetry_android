@@ -8,7 +8,7 @@ data class CommentData(
 )
 
 data class CommentDataList(
-    val heard: String,
+    val head: String,
     val nickname: String,
     val text: String,
     val time: String
