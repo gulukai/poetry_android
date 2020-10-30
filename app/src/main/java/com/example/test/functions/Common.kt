@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.Toast
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.poetry_list_item_layout.view.*
 import okhttp3.FormBody
 import okhttp3.RequestBody
 import java.lang.reflect.Method
+import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -164,6 +166,24 @@ class Common {
             setShowSoftInputOnFocus.invoke(editText, false)
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    fun changeTime(time: String): String {
+        val currentTime = System.currentTimeMillis()
+        val time2 = time.toLong()
+        val x: Int = ((currentTime - time2) / (1000 * 60 * 60)).toInt()
+        return if (x == 0) {
+            "${((currentTime - time2) / (1000 * 60)).toInt().toString()}分钟前"
+        } else if (x in 1..24) {
+            "${x}小时前"
+        } else if (x in 25..48) {
+            "昨天"
+        } else if (x > 48) {
+            val sdf = SimpleDateFormat("yyyy-MM-dd")
+            return sdf.format(time2)
+        } else {
+            "空"
         }
     }
 }

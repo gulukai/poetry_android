@@ -29,20 +29,18 @@ class CommentActivityList : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comment_list)
         val poetryId = intent.getIntExtra("poetryId", 0)
-        Log.i("Tag", poetryId.toString())
         edit_text_comment_list.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 if (User.user_no == 0L) {
+                    edit_text_comment_list.clearFocus()
                     Common.myToast(this, "请先登录！")
                 } else {
-                    Log.i("'Tag", User.user_no.toString())
                     Common().setDontShowSoftInputWhenFocused(edit_text_comment_list)
                     val dialog = CommentDialog(this)
                     dialog.setCancelable(false)
                     dialog.show()
                     dialog.setStyle { comment, cancel, release ->
                         release.setOnClickListener {
-                            Log.i("Tag", comment.text.toString())
                             postComment(
                                 poetryId.toString(),
                                 User.user_no.toString(),
@@ -105,7 +103,7 @@ class CommentActivityList : BaseActivity() {
                                     holder.itemView.nickname_comment_list.text =
                                         commentList[position].nickname
                                     holder.itemView.time_comment_list.text =
-                                        commentList[position].time
+                                        Common().changeTime(commentList[position].time)
                                     holder.itemView.text_comment_list.text =
                                         commentList[position].text
                                 }.create()
@@ -153,13 +151,6 @@ class CommentActivityList : BaseActivity() {
     }
 
     private fun postComment(poetryId: String, gollum: String, text: String) {
-        /*
-        * method = request.POST.get("method")
-          comment_poetry = request.POST.get("poetry_id")
-          comment_user = request.POST.get("user_id")
-          comment_text = request.POST.get("text")
-          comment_time = request.POST.get("time")
-        * */
         val time = System.currentTimeMillis().toString()
         try {
             val params = mapOf<String, String>(

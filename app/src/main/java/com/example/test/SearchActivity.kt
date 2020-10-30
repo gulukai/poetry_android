@@ -6,6 +6,8 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.test.adapter.MyRecyclerViewAdapter
 import com.example.test.base.BaseActivity
@@ -18,9 +20,30 @@ import kotlinx.android.synthetic.main.hot_search_list_item_layout.view.*
 class SearchActivity : BaseActivity(), View.OnClickListener {
     private val hotSearchList = arrayListOf<ItemData>()
     private val list = arrayListOf("李白", "李商隐", "杜甫", "白居易", "李煜", "崔郊", "陆游", "苏轼", "孟郊")
+    private var checked = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+
+        val searchList = arrayOf("不限", "题目", "作者","朝代","标签")
+        spinner_search_activity.adapter =
+            ArrayAdapter(this, R.layout.my_spinner_layout, searchList)
+        spinner_search_activity.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (position != 0) {
+                    checked = searchList[position]
+                }
+            }
+        }
 
         back_search_activity.setOnClickListener(this)
         classified_search_activity.setOnClickListener(this)
@@ -28,11 +51,44 @@ class SearchActivity : BaseActivity(), View.OnClickListener {
             if (edit_text_search_activity.text.toString() == "") {
                 Common.myToast(this, "请输入你需要搜索的关键字！")
             } else {
-                val intent = Intent(this, PoetryListActivity::class.java)
-                val bundle = Bundle()
-                bundle.putString("全局搜索", edit_text_search_activity.text.toString())
-                intent.putExtras(bundle)
-                startActivity(intent)
+                when(checked){
+                    "不限"->{
+                        val intent = Intent(this, PoetryListActivity::class.java)
+                        val bundle = Bundle()
+                        bundle.putString("全局搜索", edit_text_search_activity.text.toString())
+                        intent.putExtras(bundle)
+                        startActivity(intent)
+                    }
+                    "题目"->{
+                        val intent = Intent(this, PoetryListActivity::class.java)
+                        val bundle = Bundle()
+                        bundle.putString("题目", edit_text_search_activity.text.toString())
+                        intent.putExtras(bundle)
+                        startActivity(intent)
+                    }
+                    "作者"->{
+                        val intent = Intent(this, PoetryListActivity::class.java)
+                        val bundle = Bundle()
+                        bundle.putString("作者", edit_text_search_activity.text.toString())
+                        intent.putExtras(bundle)
+                        startActivity(intent)
+                    }
+                    "朝代"->{
+                        val intent = Intent(this, PoetryListActivity::class.java)
+                        val bundle = Bundle()
+                        bundle.putString("朝代", edit_text_search_activity.text.toString())
+                        intent.putExtras(bundle)
+                        startActivity(intent)
+                    }
+                    "标签"->{
+                        val intent = Intent(this, PoetryListActivity::class.java)
+                        val bundle = Bundle()
+                        bundle.putString("标签", edit_text_search_activity.text.toString())
+                        intent.putExtras(bundle)
+                        startActivity(intent)
+                    }
+                }
+
             }
         }
         edit_text_search_activity.setOnEditorActionListener { _, actionId, event ->

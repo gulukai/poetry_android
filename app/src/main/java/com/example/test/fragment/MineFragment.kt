@@ -21,10 +21,6 @@ class MineFragment(private val gollum: Long) : BaseFragment(R.layout.my_fragment
             image.setImageResource(R.drawable.collection)
             text.text = "我的收藏"
         }
-        comment_my_fragment.setStyle { image, text ->
-            image.setImageResource(R.drawable.comment)
-            text.text = "我的评论"
-        }
         security_my_fragment.setStyle { image, text ->
             image.setImageResource(R.drawable.security)
             text.text = "安全设置"

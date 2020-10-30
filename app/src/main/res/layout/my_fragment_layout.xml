@@ -133,12 +133,6 @@
                 android:layout_marginTop="10dp" />
 
             <com.example.test.custom.MyFunctionBar
-                android:id="@+id/comment_my_fragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
-
-            <com.example.test.custom.MyFunctionBar
                 android:id="@+id/security_my_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

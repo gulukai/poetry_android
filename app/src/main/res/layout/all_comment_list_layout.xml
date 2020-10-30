@@ -5,12 +5,12 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:paddingBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/head_image_comment_list"
+            android:id="@+id/all_head_image_comment_list"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="20dp"
@@ -24,7 +24,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/nickname_comment_list"
+                android:id="@+id/all_nickname_comment_list"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="15dp"
@@ -35,7 +35,7 @@
 
 
             <TextView
-                android:id="@+id/time_comment_list"
+                android:id="@+id/all_time_comment_list"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="15dp"
@@ -44,12 +44,22 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/text_comment_list"
+                android:id="@+id/all_text_comment_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/all_title_comment_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:textColor="#D1AE54" />
 
     <View
         android:layout_width="match_parent"
