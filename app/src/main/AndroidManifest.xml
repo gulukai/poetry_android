@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OtherUserActivity"></activity>
+        <activity android:name=".OtherUserActivity" />
         <activity android:name=".CommentActivityList" />
         <activity android:name=".PoetryCollectionActivity" />
         <activity android:name=".RegisterActivity" />
@@ -28,6 +28,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.test.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
+        </provider>
+
+
+</application>
 
 </manifest>
