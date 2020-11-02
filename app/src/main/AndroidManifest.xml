@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".UserMessageManageActivity"></activity>
         <activity android:name=".OtherUserActivity" />
         <activity android:name=".CommentActivityList" />
         <activity android:name=".PoetryCollectionActivity" />
@@ -34,10 +35,10 @@
             android:authorities="com.example.test.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
-            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
         </provider>
-
-
-</application>
+    </application>
 
 </manifest>

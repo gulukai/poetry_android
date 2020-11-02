@@ -2,7 +2,6 @@ package com.example.test.poetryfragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,9 +15,7 @@ import com.example.test.fragment.BaseFragment
 import com.example.test.functions.Common
 import com.example.test.netWork.CommonTask
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.all_comment_list_layout.view.*
-import kotlinx.android.synthetic.main.poetry_list_item_layout.view.*
 import kotlinx.android.synthetic.main.three_fragment_layout.*
 
 class ThreeFragment : BaseFragment(R.layout.three_fragment_layout) {

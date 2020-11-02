@@ -244,7 +244,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="50dp"
             android:gravity="center"
             android:text="注册成功会返回一个咕噜号，请妥善管理！"
             android:textColor="#ff0000"

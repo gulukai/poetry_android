@@ -38,6 +38,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         val num = intent.getIntExtra("login", 1)
         if (num == 99) {
             val gollum = intent.getLongExtra("user_no", 1)
+            User.user_no = gollum
             mine_rb_main.isChecked = true
             changeTab(MineFragment(gollum))
         }

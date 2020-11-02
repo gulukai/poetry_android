@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.example.test.base.BaseActivity
 import com.example.test.base.User
@@ -19,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.*
 import java.io.IOException
 
-class LoginActivity : AppCompatActivity(), View.OnClickListener {
+class LoginActivity : BaseActivity(), View.OnClickListener {
     private val dbHelper = MyDbHelper(this, "User.db", 1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -121,6 +119,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                                         )
                                         intent.putExtra("login", 99)
                                         startActivity(intent)
+                                        finish()
                                         Looper.loop()
                                     }
                                     201 -> {

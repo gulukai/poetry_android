@@ -27,4 +27,6 @@ class Change {
         }
         return bitmap
     }
+
+
 }
