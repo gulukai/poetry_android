@@ -15,10 +15,7 @@ import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.example.test.LoginActivity
-import com.example.test.PoetryCollectionActivity
-import com.example.test.R
-import com.example.test.UserMessageManageActivity
+import com.example.test.*
 import com.example.test.base.User
 import com.example.test.data.FansAndFollow
 import com.example.test.data.UserMessageData
@@ -156,6 +153,7 @@ class MineFragment(private val gollum: Long) : BaseFragment(R.layout.my_fragment
         }
 
         security_my_fragment.setOnClickListener(this)
+        about_us_my_fragment.setOnClickListener(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -258,6 +256,9 @@ class MineFragment(private val gollum: Long) : BaseFragment(R.layout.my_fragment
         when (v) {
             security_my_fragment -> {
                 Common().goActivity(this.context!!, UserMessageManageActivity::class.java)
+            }
+            about_us_my_fragment -> {
+                Common().goActivity(this.context!!, AboutUsActivity::class.java)
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.example.test
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
@@ -15,6 +16,7 @@ import com.example.test.data.CommentData
 import com.example.test.data.CommentDataItem
 import com.example.test.functions.Common
 import com.example.test.mydialog.CommentDialog
+import com.example.test.mydialog.LoginDialog
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_comment_list.*
 import kotlinx.android.synthetic.main.comment_list_layout.view.*
@@ -33,7 +35,22 @@ class CommentActivityList : BaseActivity() {
             if (hasFocus) {
                 if (User.user_no == 0L) {
                     edit_text_comment_list.clearFocus()
-                    Common.myToast(this, "请先登录！")
+                    val loginDialog = LoginDialog(this)
+                    loginDialog.setCancelable(true)
+                    loginDialog.show()
+                    loginDialog.setStyle { comment, cancel, release ->
+                        cancel.setOnClickListener {
+                            edit_text_comment_list.clearFocus()
+                            loginDialog.dismiss()
+                        }
+                        release.setOnClickListener {
+                            val intent = Intent(this, LoginActivity::class.java)
+                            intent.putExtra("message", "请登录")
+                            startActivity(intent)
+                            loginDialog.dismiss()
+                        }
+                    }
+
                 } else {
                     Common().setDontShowSoftInputWhenFocused(edit_text_comment_list)
                     val dialog = CommentDialog(this)

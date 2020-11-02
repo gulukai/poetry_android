@@ -13,6 +13,7 @@ import com.example.test.base.User
 import com.example.test.data.UserItemData
 import com.example.test.db.MyDbHelper
 import com.example.test.functions.Common
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_user_message_manage.*
 import kotlinx.android.synthetic.main.user_manage_item_layout.view.*
 
@@ -79,24 +80,27 @@ class UserMessageManageActivity : BaseActivity(), View.OnClickListener {
                     if (userList[position].flag != 1) {
                         User.user_no = userList[position].gollum.toLong()
                         val timeOfNow = System.currentTimeMillis()
-                        val values = ContentValues()
-                        values.put("is_login", 1)
-                        values.put("current", timeOfNow)
+                        val values = ContentValues().apply {
+                            put("is_login", 1)
+                            put("current", timeOfNow.toString())
+                        }
                         db.update(
                             "User",
                             values,
                             "gollum = ?",
                             arrayOf(userList[position].gollum.toString())
                         )
-                        val values2 = ContentValues()
-                        values.put("is_login", 0)
-                        values.put("current", timeOfNow)
+                        val values2 = ContentValues().apply {
+                            put("is_login", 0)
+                            put("current", timeOfNow.toString())
+                        }
+
                         for (user in userList) {
                             if (user.flag == 1) {
                                 db.update(
                                     "User",
                                     values2,
-                                    "gollum == ?",
+                                    "gollum = ?",
                                     arrayOf(user.gollum.toString())
                                 )
                             }

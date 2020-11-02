@@ -99,6 +99,15 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                                                 "gollum = ?",
                                                 arrayOf(gollum_login_activity.text.toString())
                                             )
+                                        val value2 = ContentValues().apply {
+                                            put("is_login",0)
+                                        }
+                                        db.update(
+                                            "User",
+                                            value2,
+                                            "gollum != ?",
+                                            arrayOf(gollum_login_activity.text.toString())
+                                        )
                                         Log.i("Tag", "rows:$rows")
                                         if (rows != 1) {
                                             val value = ContentValues().apply {
@@ -109,6 +118,15 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                                                 put("pwd", password_login_activity.text.toString())
                                             }
                                             db.insert("User", null, value)
+                                            val value3 = ContentValues().apply {
+                                                put("is_login",0)
+                                            }
+                                            db.update(
+                                                "User",
+                                                value3,
+                                                "gollum != ?",
+                                                arrayOf(gollum_login_activity.text.toString())
+                                            )
                                         }
                                         User.user_no = gollum_login_activity.text.toString().toLong()
                                         val intent =
