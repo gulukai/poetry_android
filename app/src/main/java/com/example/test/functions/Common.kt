@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.Toast
@@ -138,6 +137,22 @@ class Common {
         b = m.matches()
         return b
     }
+    /**
+     * 邮箱地址验证
+     * @param str
+     * @return 验证通过返回true
+     */
+    fun isEmail(string: String?): Boolean {
+        if (string == null) return false
+        val regEx1 =
+            "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$"
+        val p: Pattern
+        val m: Matcher
+        p = Pattern.compile(regEx1)
+        m = p.matcher(string)
+        return m.matches()
+    }
+
 
     fun buildParams(param: Map<String, String>?): RequestBody {
         var params: Map<String, String>? = param

@@ -20,11 +20,51 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.example.test.custom.MyDataBar
-            android:id="@+id/gender_data"
+        <com.google.android.material.card.MaterialCardView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/gender_my_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="5dp"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
+            app:cardBackgroundColor="#FAFAFA"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/gender_head_my_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/gender_content_my_data"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:spinnerMode="dropdown"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="45dp"
+                android:background="#D3D3D3" />
+
+        </com.google.android.material.card.MaterialCardView>
 
         <com.example.test.custom.MyDataBar
             android:id="@+id/birthday_data"

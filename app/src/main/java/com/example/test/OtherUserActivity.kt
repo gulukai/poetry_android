@@ -18,7 +18,6 @@ import com.example.test.data.UserMessageData
 import com.example.test.functions.Common
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_other_user.*
-import kotlinx.android.synthetic.main.my_fragment_layout.*
 import okhttp3.*
 import java.io.IOException
 
