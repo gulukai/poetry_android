@@ -3,6 +3,7 @@ package com.example.test
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,13 +13,14 @@ import com.example.test.base.BaseActivity
 import com.example.test.base.User
 import com.example.test.data.UserItemData
 import com.example.test.db.MyDbHelper
-import com.example.test.functions.Common
-import kotlinx.android.synthetic.main.activity_login.*
+import com.example.test.mydialog.LoginDialog
+import kotlinx.android.synthetic.main.activity_comment_list.*
 import kotlinx.android.synthetic.main.activity_user_message_manage.*
 import kotlinx.android.synthetic.main.user_manage_item_layout.view.*
 
 class UserMessageManageActivity : BaseActivity(), View.OnClickListener {
     private val dbHelper = MyDbHelper(this, "User.db", 1)
+    private val longTime = 60 * 60 * 24 * 30
     private val userList = arrayListOf<UserItemData>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,42 +79,87 @@ class UserMessageManageActivity : BaseActivity(), View.OnClickListener {
                     holder.itemView.checked_manage_item.visibility = View.VISIBLE
                 }
                 holder.itemView.setOnClickListener {
+                    var time = ""
                     if (userList[position].flag != 1) {
-                        User.user_no = userList[position].gollum.toLong()
-                        val timeOfNow = System.currentTimeMillis()
-                        val values = ContentValues().apply {
-                            put("is_login", 1)
-                            put("current", timeOfNow.toString())
-                        }
-                        db.update(
+                        val cursor2 = db.query(
                             "User",
-                            values,
+                            null,
                             "gollum = ?",
-                            arrayOf(userList[position].gollum.toString())
+                            arrayOf(userList[position].gollum.toString()),
+                            null,
+                            null,
+                            null
                         )
-                        val values2 = ContentValues().apply {
-                            put("is_login", 0)
-                            put("current", timeOfNow.toString())
+                        while (cursor2.moveToNext()) {
+                            time = cursor2.getString(cursor2.getColumnIndex("current"))
                         }
-
-                        for (user in userList) {
-                            if (user.flag == 1) {
-                                db.update(
-                                    "User",
-                                    values2,
-                                    "gollum = ?",
-                                    arrayOf(user.gollum.toString())
-                                )
+                        val time2 = time.toLong()
+                        val timeOfNow = System.currentTimeMillis()
+                        val timeDifferent = (timeOfNow - time2) / 1000
+                        if (timeDifferent > longTime || timeDifferent < 0) {
+                            val values = ContentValues()
+                            values.put("is_login", 0)
+                            values.put("pwd", "")
+                            values.put("current", timeOfNow)
+                            db.update(
+                                "User",
+                                values,
+                                "gollum = ?",
+                                arrayOf(userList[position].gollum.toString())
+                            )
+                            val loginDialog = LoginDialog(this)
+                            loginDialog.setCancelable(true)
+                            loginDialog.show()
+                            loginDialog.setStyle { comment, cancel, release ->
+                                comment.text = "该账号长期未登录密码已失效！"
+                                cancel.setOnClickListener {
+                                    loginDialog.dismiss()
+                                }
+                                release.setOnClickListener {
+                                    val intent = Intent(this, LoginActivity::class.java)
+                                    intent.putExtra("message", "请登录")
+                                    startActivity(intent)
+                                    loginDialog.dismiss()
+                                }
                             }
+                        } else {
+                            User.user_no = userList[position].gollum.toLong()
+                            Log.i("Tag", "userList${userList[position].gollum.toLong()}")
+                            val values2 = ContentValues().apply {
+                                put("is_login", 0)
+                                put("current", System.currentTimeMillis().toString())
+                            }
+
+                            for (user in userList) {
+                                if (user.flag == 1) {
+                                    db.update(
+                                        "User",
+                                        values2,
+                                        "gollum = ?",
+                                        arrayOf(user.gollum.toString())
+                                    )
+                                }
+                            }
+                            val values = ContentValues().apply {
+                                put("is_login", 1)
+                                put("current", (System.currentTimeMillis() + 1000).toString())
+                            }
+                            db.update(
+                                "User",
+                                values,
+                                "gollum = ?",
+                                arrayOf(userList[position].gollum.toString())
+                            )
+                            val intent =
+                                Intent(this, MainActivity::class.java)
+                            intent.putExtra(
+                                "user_no",
+                                userList[position].gollum.toString().toLong()
+                            )
+                            intent.putExtra("login", 99)
+                            startActivity(intent)
                         }
-                        val intent =
-                            Intent(this, MainActivity::class.java)
-                        intent.putExtra(
-                            "user_no",
-                            userList[position].gollum.toString().toLong()
-                        )
-                        intent.putExtra("login", 99)
-                        startActivity(intent)
+                        cursor2.close()
                     }
                 }
             }.create()

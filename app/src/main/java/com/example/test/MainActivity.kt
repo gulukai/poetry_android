@@ -30,11 +30,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
         poetry_rb_main.isChecked = true
         changeTab(PoetryFragment())
-
         poetry_rb_main.setOnClickListener(this)
         zanding_rb_main.setOnClickListener(this)
         mine_rb_main.setOnClickListener(this)
-
         val num = intent.getIntExtra("login", 1)
         if (num == 99) {
             val gollum = intent.getLongExtra("user_no", 1)
@@ -42,7 +40,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             mine_rb_main.isChecked = true
             changeTab(MineFragment(gollum))
         }
-
         getUserMain()
     }
 
@@ -103,14 +100,15 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                         Log.i("Tag", "rows:$rows")
                         loginNum = 2
                     }
-                } else {
-                    //未登录过账号
-                    val intent = Intent(this, LoginActivity::class.java)
-                    intent.putExtra("message", "请登录")
-                    startActivity(intent)
                 }
                 cursor.close()
                 when (loginNum) {
+                    0 -> {
+                        //未登录过账号
+                        val intent = Intent(this, LoginActivity::class.java)
+                        intent.putExtra("message", "请登录")
+                        startActivity(intent)
+                    }
                     1 -> {
                         //两次登录的时间间隔可以，，直接跳转我的页面
                         changeTab(MineFragment(gollumNum))
@@ -136,7 +134,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         } else {
             ActivityCollector.finishAllActivity()
         }
-
     }
 
     private fun getUserMain() {
