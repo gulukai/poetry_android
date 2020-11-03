@@ -1,9 +1,9 @@
 package com.example.test
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.test.base.BaseActivity
 
-class AboutUsActivity : AppCompatActivity() {
+class AboutUsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about_us)

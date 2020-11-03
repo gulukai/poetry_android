@@ -3,7 +3,6 @@ package com.example.test.db
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.test.functions.Common
 
 class MyDbHelper(val context: Context, name: String, version: Int) :
     SQLiteOpenHelper(context, name, null, version) {
@@ -16,6 +15,7 @@ class MyDbHelper(val context: Context, name: String, version: Int) :
             "pwd text)"
     private val poetryCollectionTable = "create table PoetryCollection (" +
             " id integer primary key autoincrement," +
+            "gollum text," +
             "poetry_no integer)"
 
     override fun onCreate(db: SQLiteDatabase) {

@@ -141,7 +141,7 @@ class MineFragment(private val gollum: Long) : BaseFragment(R.layout.my_fragment
         }
         system_my_fragment.setStyle { image, text ->
             image.setImageResource(R.drawable.system)
-            text.text = "系统设置"
+            text.text = "资料修改"
         }
         about_us_my_fragment.setStyle { image, text ->
             image.setImageResource(R.drawable.about)
@@ -154,6 +154,7 @@ class MineFragment(private val gollum: Long) : BaseFragment(R.layout.my_fragment
 
         security_my_fragment.setOnClickListener(this)
         about_us_my_fragment.setOnClickListener(this)
+        system_my_fragment.setOnClickListener(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -259,6 +260,9 @@ class MineFragment(private val gollum: Long) : BaseFragment(R.layout.my_fragment
             }
             about_us_my_fragment -> {
                 Common().goActivity(this.context!!, AboutUsActivity::class.java)
+            }
+            system_my_fragment -> {
+                Common().goActivity(this.context!!, DataActivity::class.java)
             }
         }
     }

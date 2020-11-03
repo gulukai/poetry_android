@@ -3,6 +3,7 @@ package com.example.test
 import android.os.Bundle
 import android.view.View
 import com.example.test.base.BaseActivity
+import com.example.test.base.User
 import com.example.test.data.PoetryWithFirst
 import com.example.test.data.PoetryWithFirstData
 import com.example.test.db.MyDbHelper
@@ -28,7 +29,15 @@ class PoetryCollectionActivity : BaseActivity() {
         }
         var str = ""
         val db = dbHelper.writableDatabase
-        val cursor = db.query("PoetryCollection", null, null, null, null, null, null)
+        val cursor = db.query(
+            "PoetryCollection",
+            null,
+            "gollum = ?",
+            arrayOf("${User.user_no}"),
+            null,
+            null,
+            null
+        )
         while (cursor.moveToNext()) {
             val poetryNum = cursor.getInt(cursor.getColumnIndex("poetry_no"))
             str += "$poetryNum,"
