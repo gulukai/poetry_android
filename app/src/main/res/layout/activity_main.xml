@@ -37,15 +37,15 @@
             android:textSize="12sp" />
 
         <RadioButton
-            android:id="@+id/zanding_rb_main"
+            android:id="@+id/sentence_rb_main"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#F5F5F5"
             android:button="@null"
-            android:drawableTop="@drawable/poetry_drawable"
+            android:drawableTop="@drawable/sentence_drawable"
             android:gravity="center"
-            android:text="@string/poetry"
+            android:text="@string/sentence"
             android:textColor="@drawable/rb_text"
             android:textSize="12sp" />
 

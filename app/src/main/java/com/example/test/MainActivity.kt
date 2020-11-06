@@ -2,11 +2,9 @@ package com.example.test
 
 import android.content.ContentValues
 import android.content.Intent
-import android.database.Cursor
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.test.base.ActivityCollector
 import com.example.test.base.BaseActivity
@@ -15,7 +13,7 @@ import com.example.test.data.UserData
 import com.example.test.db.MyDbHelper
 import com.example.test.fragment.MineFragment
 import com.example.test.fragment.PoetryFragment
-import com.example.test.fragment.ZandingFragment
+import com.example.test.fragment.SentenceFragment
 import com.example.test.functions.Common
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -31,7 +29,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         poetry_rb_main.isChecked = true
         changeTab(PoetryFragment())
         poetry_rb_main.setOnClickListener(this)
-        zanding_rb_main.setOnClickListener(this)
+        sentence_rb_main.setOnClickListener(this)
         mine_rb_main.setOnClickListener(this)
         val num = intent.getIntExtra("login", 1)
         if (num == 99) {
@@ -53,8 +51,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             poetry_rb_main -> {
                 changeTab(PoetryFragment())
             }
-            zanding_rb_main -> {
-                changeTab(ZandingFragment())
+            sentence_rb_main -> {
+                changeTab(SentenceFragment())
             }
             mine_rb_main -> {
                 userData.clear()
