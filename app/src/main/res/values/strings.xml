@@ -36,4 +36,5 @@
     <string name="release">发布</string>
     <string name="add_user">添加或注册账号</string>
     <string name="sentence">佳句</string>
+    <string name="recommended_sentence">佳句推荐</string>
 </resources>
