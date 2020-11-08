@@ -38,7 +38,7 @@ class CommentActivityList : BaseActivity() {
                     val loginDialog = LoginDialog(this)
                     loginDialog.setCancelable(true)
                     loginDialog.show()
-                    loginDialog.setStyle { comment, cancel, release ->
+                    loginDialog.setStyle { _, cancel, release ->
                         cancel.setOnClickListener {
                             edit_text_comment_list.clearFocus()
                             loginDialog.dismiss()

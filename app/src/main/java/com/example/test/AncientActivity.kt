@@ -1,12 +1,12 @@
 package com.example.test
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.test.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_ancient.*
 
-class AncientActivity : AppCompatActivity() {
+class AncientActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ancient)

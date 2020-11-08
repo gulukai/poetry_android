@@ -38,4 +38,5 @@
     <string name="sentence">佳句</string>
     <string name="recommended_sentence">佳句推荐</string>
     <string name="author_poetry"><![CDATA[查看该作者的所有诗集>>]]></string>
+    <string name="tip_author">请输入你要搜索的作者</string>
 </resources>

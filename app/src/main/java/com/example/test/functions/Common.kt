@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -202,4 +203,17 @@ class Common {
             "空"
         }
     }
+
+    /**
+     * 隐藏键盘的方法
+     *
+     * @param context
+     */
+    fun hideKeyboard(context: Activity) {
+        val imm: InputMethodManager =
+            context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        // 隐藏软键盘
+        imm.hideSoftInputFromWindow(context.window.decorView.windowToken, 0)
+    }
+
 }

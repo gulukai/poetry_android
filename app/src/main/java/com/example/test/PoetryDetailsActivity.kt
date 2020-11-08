@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import com.example.test.base.BaseActivity
 import com.example.test.base.User
 import com.example.test.data.CommentData
-import com.example.test.data.CommentDataList
 import com.example.test.data.PoetryDetailsData
 import com.example.test.db.MyDbHelper
 import com.example.test.functions.Common
@@ -19,7 +18,6 @@ import com.example.test.mydialog.LoginDialog
 import com.example.test.netWork.CommonTask
 import com.example.test.poetrydetailsfragment.*
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_comment_list.*
 import kotlinx.android.synthetic.main.activity_poetry_details.*
 import okhttp3.*
 import java.io.IOException

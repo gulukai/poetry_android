@@ -8,7 +8,6 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.text.InputType
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -19,7 +18,6 @@ import com.example.test.functions.Common
 import com.example.test.mydialog.EditDialog
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_data.*
-import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.*
 import java.io.IOException
 import java.util.*

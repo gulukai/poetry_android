@@ -14,7 +14,6 @@ import com.example.test.base.User
 import com.example.test.data.UserItemData
 import com.example.test.db.MyDbHelper
 import com.example.test.mydialog.LoginDialog
-import kotlinx.android.synthetic.main.activity_comment_list.*
 import kotlinx.android.synthetic.main.activity_user_message_manage.*
 import kotlinx.android.synthetic.main.user_manage_item_layout.view.*
 
