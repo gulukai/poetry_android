@@ -7,9 +7,9 @@ import com.example.test.R
 import com.example.test.adapter.MyViewPagerAdapter
 import com.example.test.sentencefragment.TheAncientsFragment
 import com.example.test.sentencefragment.ThreeWordsFragment
-import kotlinx.android.synthetic.main.zanding_fragment_layout.*
+import kotlinx.android.synthetic.main.sentence_fragment_layout.*
 
-class SentenceFragment : BaseFragment(R.layout.zanding_fragment_layout) {
+class SentenceFragment : BaseFragment(R.layout.sentence_fragment_layout) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val fragmentList = listOf<Fragment>(ThreeWordsFragment(), TheAncientsFragment())

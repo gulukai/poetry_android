@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="本APP仅作为周芳铠毕业设计使用\n如有雷同\n纯属巧合\n版本号：v1.0"
+        android:text="本APP仅作为咕噜铠毕业设计使用\n如有雷同\n纯属巧合\n版本号：v1.0"
         android:textSize="25sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

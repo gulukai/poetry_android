@@ -58,6 +58,18 @@ class CommentActivityList : BaseActivity() {
                     dialog.show()
                     dialog.setStyle { comment, cancel, release ->
                         release.setOnClickListener {
+
+                            /*
+                            * commentList.add(
+                                    CommentDataItem(
+                                        headUrl,
+                                        item.nickname,
+                                        item.time,
+                                        item.text
+                                    )
+                                )
+                            * */
+
                             postComment(
                                 poetryId.toString(),
                                 User.user_no.toString(),

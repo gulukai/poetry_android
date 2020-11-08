@@ -37,7 +37,7 @@ class OneFragment : BaseFragment(R.layout.one_fragment_layout) {
         poetryId.clear()
         var str = ""
         for (i in 0..4) {
-            val num = (0..940).random()
+            val num = (1..2070).random()
             poetryId.add(num.toString())
         }
         for (i in poetryId) {

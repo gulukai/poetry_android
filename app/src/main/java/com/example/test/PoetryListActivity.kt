@@ -60,26 +60,31 @@ class PoetryListActivity : BaseActivity() {
         commonTask.url = "http://www.gulukai.cn/poetry/getpoetry/?p1=$label&p2=$keyword"
         commonTask.setCallback {
             val info = Gson().fromJson(it, MyPoetryDetailsDataList::class.java)
-            val poetryList = info.data
-            for (poetry in poetryList) {
-                val first = poetry.text.split("。")[0] + "。"
-                poetryArrayList.add(
-                    PoetryWithFirst(
-                        poetry.no,
-                        poetry.author,
-                        poetry.dynasty,
-                        poetry.title,
-                        first
+            if (info.code == 200) {
+                val poetryList = info.data
+                for (poetry in poetryList) {
+                    val first = poetry.text.split("。")[0] + "。"
+                    poetryArrayList.add(
+                        PoetryWithFirst(
+                            poetry.no,
+                            poetry.author,
+                            poetry.dynasty,
+                            poetry.title,
+                            first
+                        )
                     )
+                }
+                Common().getPoetryWithFirst(
+                    recycler_poetry_list_activity,
+                    poetryArrayList,
+                    R.layout.poetry_item_with_first_layout,
+                    this,
+                    this
                 )
+            } else {
+                text_poetry_list.visibility = View.VISIBLE
             }
-            Common().getPoetryWithFirst(
-                recycler_poetry_list_activity,
-                poetryArrayList,
-                R.layout.poetry_item_with_first_layout,
-                this,
-                this
-            )
+
         }
         commonTask.execute()
     }

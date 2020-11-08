@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".AncientActivity"></activity>
         <activity android:name=".DataActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".UserMessageManageActivity" />
