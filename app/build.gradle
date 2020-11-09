@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion 29
@@ -68,4 +69,34 @@ dependencies {
     implementation  'com.scwang.smart:refresh-footer-ball:2.0.1'
     implementation  'com.scwang.smart:refresh-footer-classics:2.0.1'
 
+}
+
+MobSDK {
+    appKey "m315eedaeb61d0"
+    appSecret "8a46226690997fc6b686e7baeea69eda"
+    ShareSDK {
+        loopShare true
+        devInfo {
+            Wechat {
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+                userName "gh_afb25ac019c9"
+                path "pages/index/index.html?id=1"
+                withShareTicket true
+                miniprogramType 2
+            }
+            QQ {
+                appId "1111105841"
+                appKey "cZhDPz7o5pIyTYh9"
+            }
+            WechatMoments {
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+            }
+            WechatFavorite {
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+            }
+        }
+    }
 }

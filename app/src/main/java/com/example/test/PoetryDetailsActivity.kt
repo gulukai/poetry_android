@@ -29,6 +29,9 @@ class PoetryDetailsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_poetry_details)
+
+        //http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=2&text=你要转换的文字
+
         val db = myHelper.writableDatabase
         val poetryId = intent.getIntExtra("poetryId", 1)
         getCommentCount(poetryId)

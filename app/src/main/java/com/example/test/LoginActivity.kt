@@ -47,6 +47,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
         register_login_activity.setOnClickListener(this)
         big_arrow_login.setOnClickListener(this)
+        retrieve_password_login_activity.setOnClickListener(this)
+
         val gollum = intent.getLongExtra("gollum", 1)
         if (gollum.toDouble() != 1.00) {
             gollum_login_activity.setText(gollum.toString())
@@ -100,7 +102,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                                                 arrayOf(gollum_login_activity.text.toString())
                                             )
                                         val value2 = ContentValues().apply {
-                                            put("is_login",0)
+                                            put("is_login", 0)
                                         }
                                         db.update(
                                             "User",
@@ -119,7 +121,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                                             }
                                             db.insert("User", null, value)
                                             val value3 = ContentValues().apply {
-                                                put("is_login",0)
+                                                put("is_login", 0)
                                             }
                                             db.update(
                                                 "User",
@@ -128,7 +130,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                                                 arrayOf(gollum_login_activity.text.toString())
                                             )
                                         }
-                                        User.user_no = gollum_login_activity.text.toString().toLong()
+                                        User.user_no =
+                                            gollum_login_activity.text.toString().toLong()
                                         val intent =
                                             Intent(this@LoginActivity, MainActivity::class.java)
                                         intent.putExtra(
@@ -157,6 +160,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
+            }
+            retrieve_password_login_activity -> {
+                Common().goActivity(this, VerificationActivity::class.java)
             }
         }
     }
