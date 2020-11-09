@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".PoetryCollectionActivity">
 
-    <com.example.test.custom.MyActionBar
+    <com.example.gulupoetry.custom.MyActionBar
         android:id="@+id/action_bar_collection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

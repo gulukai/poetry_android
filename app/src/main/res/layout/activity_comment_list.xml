@@ -10,7 +10,7 @@
         android:orientation="vertical"
         tools:context=".CommentActivityList">
 
-        <com.example.test.custom.MyActionBar
+        <com.example.gulupoetry.custom.MyActionBar
             android:id="@+id/action_comment_list_activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

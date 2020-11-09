@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context=".PoetryDetailsActivity">
 
-    <com.example.test.custom.MyActionBar
+    <com.example.gulupoetry.custom.MyActionBar
         android:id="@+id/action_bar_poetry_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -84,7 +84,7 @@
         android:layout_height="1dp"
         android:background="#D3D3D3" />
 
-    <com.example.test.custom.MyFunctionBar
+    <com.example.gulupoetry.custom.MyFunctionBar
         android:id="@+id/comment_poetry_details_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

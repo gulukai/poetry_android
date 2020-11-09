@@ -3,7 +3,7 @@
 <SinaWeibo Enable="false" />
 <TencentWeibo Enable="false" />
 <Douban Enable="false" />
-<QZone Enable="false" />
+<QZone AppId="1111186282" AppKey="h8T9OokCHWMpGV35" />
 <Renren Enable="false" />
 <KaiXin Enable="false" />
 <Facebook Enable="false" />
@@ -18,7 +18,7 @@
 <ShortMessage Enable="false" />
 <Wechat Enable="false" />
 <WechatMoments Enable="false" />
-<QQ AppId="1111105841" AppKey="cZhDPz7o5pIyTYh9" />
+<QQ AppId="1111186282" AppKey="h8T9OokCHWMpGV35" />
 <Instapaper Enable="false" />
 <Pocket Enable="false" />
 <YouDao Enable="false" />

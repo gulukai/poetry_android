@@ -9,7 +9,7 @@
     android:paddingEnd="9dp"
     tools:context=".ScreenActivity">
 
-    <com.example.test.custom.MyActionBar
+    <com.example.gulupoetry.custom.MyActionBar
         android:id="@+id/action_bar_screen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

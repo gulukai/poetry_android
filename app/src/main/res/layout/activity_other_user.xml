@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.example.test.custom.MyActionBar
+        <com.example.gulupoetry.custom.MyActionBar
             android:id="@+id/action_other_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -144,7 +144,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.example.test.custom.MyFunctionBar
+            <com.example.gulupoetry.custom.MyFunctionBar
                 android:id="@+id/collection_other_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

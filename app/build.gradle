@@ -19,7 +19,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.test"
+        applicationId "com.example.gulupoetry"
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
@@ -70,12 +70,11 @@ dependencies {
     implementation  'com.scwang.smart:refresh-footer-classics:2.0.1'
 
 }
-
 MobSDK {
-    appKey "m315eedaeb61d0"
-    appSecret "8a46226690997fc6b686e7baeea69eda"
+    appKey "m3161ed98185c3"
+    appSecret "72ac86afcb5d932f419d030593eca93f"
     ShareSDK {
-        loopShare true
+        loopShare false
         devInfo {
 //            Wechat {
 //                appId "wx4868b35061f87885"
@@ -86,8 +85,8 @@ MobSDK {
 //                miniprogramType 2
 //            }
             QQ {
-                appId "1111105841"
-                appKey "cZhDPz7o5pIyTYh9"
+                appId "1111186282"
+                appKey "h8T9OokCHWMpGV35"
             }
 //            WechatMoments {
 //                appId "wx4868b35061f87885"
@@ -97,6 +96,10 @@ MobSDK {
 //                appId "wx4868b35061f87885"
 //                appSecret "64020361b8ec4c99936c0e3999a9f249"
 //            }
+            QZone {
+                appId "1111186282"
+                appKey "h8T9OokCHWMpGV35"
+            }
         }
     }
 }

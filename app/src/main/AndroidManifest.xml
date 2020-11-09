@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.test">
+    package="com.example.gulupoetry">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,23 +12,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ModifyActivity" />
-        <activity android:name=".VerificationActivity" />
-        <activity android:name=".AncientActivity" />
-        <activity android:name=".DataActivity" />
-        <activity android:name=".AboutUsActivity" />
-        <activity android:name=".UserMessageManageActivity" />
-        <activity android:name=".OtherUserActivity" />
-        <activity android:name=".CommentActivityList" />
-        <activity android:name=".PoetryCollectionActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SearchActivity" />
-        <activity android:name=".PoetryListActivity" />
-        <activity android:name=".ScreenActivity" />
-        <activity android:name=".PoetryDetailsActivity" />
+        <activity android:name="com.example.gulupoetry.ModifyActivity" />
+        <activity android:name="com.example.gulupoetry.VerificationActivity" />
+        <activity android:name="com.example.gulupoetry.AncientActivity" />
+        <activity android:name="com.example.gulupoetry.DataActivity" />
+        <activity android:name="com.example.gulupoetry.AboutUsActivity" />
+        <activity android:name="com.example.gulupoetry.UserMessageManageActivity" />
+        <activity android:name="com.example.gulupoetry.OtherUserActivity" />
+        <activity android:name="com.example.gulupoetry.CommentActivityList" />
+        <activity android:name="com.example.gulupoetry.PoetryCollectionActivity" />
+        <activity android:name="com.example.gulupoetry.RegisterActivity" />
+        <activity android:name="com.example.gulupoetry.LoginActivity" />
+        <activity android:name="com.example.gulupoetry.SearchActivity" />
+        <activity android:name="com.example.gulupoetry.PoetryListActivity" />
+        <activity android:name="com.example.gulupoetry.ScreenActivity" />
+        <activity android:name="com.example.gulupoetry.PoetryDetailsActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.gulupoetry.MainActivity"
             android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,7 +39,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.test.fileprovider"
+            android:authorities="com.example.gulupoetry.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

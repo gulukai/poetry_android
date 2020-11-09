@@ -121,25 +121,25 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.example.test.custom.MyFunctionBar
+            <com.example.gulupoetry.custom.MyFunctionBar
                 android:id="@+id/collection_my_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp" />
 
-            <com.example.test.custom.MyFunctionBar
+            <com.example.gulupoetry.custom.MyFunctionBar
                 android:id="@+id/security_my_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp" />
 
-            <com.example.test.custom.MyFunctionBar
+            <com.example.gulupoetry.custom.MyFunctionBar
                 android:id="@+id/system_my_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp" />
 
-            <com.example.test.custom.MyFunctionBar
+            <com.example.gulupoetry.custom.MyFunctionBar
                 android:id="@+id/about_us_my_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

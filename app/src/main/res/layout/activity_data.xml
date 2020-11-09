@@ -10,12 +10,12 @@
         android:orientation="vertical"
         tools:context=".DataActivity">
 
-        <com.example.test.custom.MyActionBar
+        <com.example.gulupoetry.custom.MyActionBar
             android:id="@+id/my_action_bar_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.example.test.custom.MyDataBar
+        <com.example.gulupoetry.custom.MyDataBar
             android:id="@+id/nickname_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -66,18 +66,18 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <com.example.test.custom.MyDataBar
+        <com.example.gulupoetry.custom.MyDataBar
             android:id="@+id/birthday_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.example.test.custom.MyDataBar
+        <com.example.gulupoetry.custom.MyDataBar
             android:id="@+id/tel_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp" />
 
-        <com.example.test.custom.MyDataBar
+        <com.example.gulupoetry.custom.MyDataBar
             android:id="@+id/email_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
