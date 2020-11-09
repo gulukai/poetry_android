@@ -1,13 +1,10 @@
 package com.example.test.poetryfragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.example.test.R
 import com.example.test.data.PoetryData
-import com.example.test.data.PoetryWithFirst
 import com.example.test.data.PoetryWithFirstData
-import com.example.test.data.PoetryWithFirstList
 import com.example.test.fragment.BaseFragment
 import com.example.test.functions.Common
 import com.example.test.functions.Lunar
@@ -107,7 +104,7 @@ class OneFragment : BaseFragment(R.layout.one_fragment_layout) {
                 image_one_fragment.setImageResource(R.drawable.guyu)
             }
             "立夏" -> {
-                image_one_fragment.setImageResource(R.drawable.lixia)
+                image_one_fragment.setImageResource(R.drawable.lixia2)
             }
             "小满" -> {
                 image_one_fragment.setImageResource(R.drawable.xiaoman)
