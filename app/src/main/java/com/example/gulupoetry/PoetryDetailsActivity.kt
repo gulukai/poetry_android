@@ -14,10 +14,15 @@ import com.example.gulupoetry.base.BaseActivity
 import com.example.gulupoetry.base.User
 import com.example.gulupoetry.data.CommentData
 import com.example.gulupoetry.data.PoetryDetailsData
+import com.example.gulupoetry.data.VoiceData
 import com.example.gulupoetry.db.MyDbHelper
 import com.example.gulupoetry.functions.Common
+import com.example.gulupoetry.functions.FileOP
+import com.example.gulupoetry.media.AudioPlayerUtils
 import com.example.gulupoetry.mydialog.LoginDialog
 import com.example.gulupoetry.netWork.CommonTask
+import com.example.gulupoetry.netWork.GetParams
+import com.example.gulupoetry.netWork.MTTSDemo
 import com.example.gulupoetry.poetrydetailsfragment.*
 import com.google.gson.Gson
 import com.mob.MobSDK
@@ -63,7 +68,7 @@ class PoetryDetailsActivity : BaseActivity() {
         }
         val commTask = CommonTask()
         commTask.url = "http://www.gulukai.cn/poetry/getpoetry/?p1=getpoetrybyid&p2=$poetryId"
-        commTask.setCallback {
+        commTask.setCallback { it ->
             val info = Gson().fromJson(it, PoetryDetailsData::class.java)
             val no = info.data.no
             val annotation: String = info.data.annotation
@@ -98,8 +103,44 @@ class PoetryDetailsActivity : BaseActivity() {
                 txt.text = "古诗详情"
                 hear.setBackgroundResource(R.drawable.headset)
                 share.setBackgroundResource(R.drawable.share)
+                val str = "$title$dynasty$author$text"
+
+                hear.setOnClickListener {
+//                    try {
+//                        val map = GetParams().returnParams(str)
+//                        Log.i("Tag", map.toString())
+//                        val body = Common().buildParams(map)
+//                        val client = OkHttpClient()
+//                        val request =
+//                            Request.Builder().url("https://api.ai.qq.com/fcgi-bin/aai/aai_tts")
+//                                .post(body)
+//                                .build()
+//                        client.newCall(request).enqueue(object : Callback {
+//                            override fun onFailure(call: Call, e: IOException) {
+//
+//                            }
+//
+//                            override fun onResponse(call: Call, response: Response) {
+//                                val responseData = response.body?.string()
+//                                if (responseData != null) {
+//                                    val info22 =
+//                                        Gson().fromJson(responseData, VoiceData::class.java)
+////                                    mediaPlayer.setDataSource(tempFile.getPath());
+//                                    AudioPlayerUtils.newInstance()
+//                                        .playBase64(this@PoetryDetailsActivity, info22.data.speech)
+//                                    Log.i("Tag", responseData)
+//                                }
+//                            }
+//                        })
+//                    } catch (e: java.lang.Exception) {
+//                        e.printStackTrace()
+//                    }
+                    Log.i("Tag", "test_str:$str")
+                    MTTSDemo(this).speak("你好这里全是中文")
+                }
 
                 share.setOnClickListener {
+                    MobSDK.init(this)
                     MobSDK.submitPolicyGrantResult(true, null)
                     showShare(QQ.NAME)
                 }
@@ -109,7 +150,7 @@ class PoetryDetailsActivity : BaseActivity() {
                         val loginDialog = LoginDialog(this)
                         loginDialog.setCancelable(true)
                         loginDialog.show()
-                        loginDialog.setStyle { comment, cancel, release ->
+                        loginDialog.setStyle { _, cancel, release ->
                             cancel.setOnClickListener {
                                 loginDialog.dismiss()
                             }
@@ -167,7 +208,6 @@ class PoetryDetailsActivity : BaseActivity() {
         }
         commTask.execute()
     }
-
 
     private fun getCommentCount(poetryId: Int) {
         try {
@@ -233,5 +273,20 @@ class PoetryDetailsActivity : BaseActivity() {
         oks.setUrl("http://sharesdk.cn")
         //启动分享
         oks.show(MobSDK.getContext())
+    }
+
+    override fun onStop() {
+        MTTSDemo(this).stopTTS()
+        super.onStop()
+    }
+
+    override fun onResume() {
+        MTTSDemo(this).stopTTS()
+        super.onResume()
+    }
+
+    override fun onDestroy() {
+        MTTSDemo(this).stopTTS()
+        super.onDestroy()
     }
 }

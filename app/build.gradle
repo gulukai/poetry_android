@@ -53,28 +53,21 @@ dependencies {
     implementation 'com.squareup.okio:okio:2.3.0'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.android.support:design:29.0.0'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
 
-    
-    implementation  'com.scwang.smart:refresh-layout-kernel:2.0.1'
-    implementation  'com.scwang.smart:refresh-header-classics:2.0.1'
-    implementation  'com.scwang.smart:refresh-header-radar:2.0.1'
-    implementation  'com.scwang.smart:refresh-header-falsify:2.0.1'
-    implementation  'com.scwang.smart:refresh-header-material:2.0.1'
-    implementation  'com.scwang.smart:refresh-header-two-level:2.0.1'
-    implementation  'com.scwang.smart:refresh-footer-ball:2.0.1'
-    implementation  'com.scwang.smart:refresh-footer-classics:2.0.1'
+    implementation 'com.scwang.smart:refresh-layout-kernel:2.0.1'
+    implementation 'com.scwang.smart:refresh-header-material:2.0.1'
+    implementation 'com.scwang.smart:refresh-header-two-level:2.0.1'
+    implementation 'com.scwang.smart:refresh-footer-ball:2.0.1'
+
 
 }
 MobSDK {
     appKey "m3161ed98185c3"
     appSecret "72ac86afcb5d932f419d030593eca93f"
     ShareSDK {
-        loopShare false
+        loopShare true
         devInfo {
 //            Wechat {
 //                appId "wx4868b35061f87885"
@@ -85,8 +78,8 @@ MobSDK {
 //                miniprogramType 2
 //            }
             QQ {
-                appId "1111186282"
-                appKey "h8T9OokCHWMpGV35"
+                appId "1111109121"
+                appKey "s6gTrr7AmfCBd5TN"
             }
 //            WechatMoments {
 //                appId "wx4868b35061f87885"
@@ -97,8 +90,8 @@ MobSDK {
 //                appSecret "64020361b8ec4c99936c0e3999a9f249"
 //            }
             QZone {
-                appId "1111186282"
-                appKey "h8T9OokCHWMpGV35"
+                appId "1111109121"
+                appKey "s6gTrr7AmfCBd5TN"
             }
         }
     }
