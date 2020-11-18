@@ -25,7 +25,7 @@ class SearchActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        val searchList = arrayOf("不限", "题目", "作者", "朝代", "标签")
+        val searchList = arrayOf("题目", "作者", "朝代", "标签")
         spinner_search_activity.adapter =
             ArrayAdapter(this, R.layout.my_spinner_layout, searchList)
         spinner_search_activity.onItemSelectedListener =
@@ -40,9 +40,7 @@ class SearchActivity : BaseActivity(), View.OnClickListener {
                     position: Int,
                     id: Long
                 ) {
-                    if (position != 0) {
-                        checked = searchList[position]
-                    }
+                    checked = searchList[position]
                 }
             }
 

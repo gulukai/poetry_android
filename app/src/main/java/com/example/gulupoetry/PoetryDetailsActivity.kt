@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Message
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import cn.sharesdk.onekeyshare.OnekeyShare
 import cn.sharesdk.tencent.qq.QQ
@@ -14,18 +15,19 @@ import com.example.gulupoetry.base.BaseActivity
 import com.example.gulupoetry.base.User
 import com.example.gulupoetry.data.CommentData
 import com.example.gulupoetry.data.PoetryDetailsData
-import com.example.gulupoetry.data.VoiceData
 import com.example.gulupoetry.db.MyDbHelper
 import com.example.gulupoetry.functions.Common
-import com.example.gulupoetry.functions.FileOP
-import com.example.gulupoetry.media.AudioPlayerUtils
 import com.example.gulupoetry.mydialog.LoginDialog
 import com.example.gulupoetry.netWork.CommonTask
-import com.example.gulupoetry.netWork.GetParams
-import com.example.gulupoetry.netWork.MTTSDemo
 import com.example.gulupoetry.poetrydetailsfragment.*
 import com.google.gson.Gson
+import com.iflytek.cloud.SpeechConstant
+import com.iflytek.cloud.SpeechUtility
 import com.mob.MobSDK
+import com.tencent.qcloudtts.LongTextTTS.LongTextTtsController
+import com.tencent.qcloudtts.callback.QCloudPlayerCallback
+import com.tencent.qcloudtts.callback.TtsExceptionHandler
+import com.tencent.qcloudtts.exception.TtsException
 import kotlinx.android.synthetic.main.activity_poetry_details.*
 import okhttp3.*
 import java.io.IOException
@@ -34,11 +36,13 @@ import java.io.IOException
 class PoetryDetailsActivity : BaseActivity() {
     private val myHelper = MyDbHelper(this, "User.db", 1)
     private var handle = Handler()
+    private val mTtsController = LongTextTtsController()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_poetry_details)
 
-        //http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=2&text=你要转换的文字
+        SpeechUtility.createUtility(this, SpeechConstant.APPID + "=5fb1d551")
 
         val db = myHelper.writableDatabase
         val poetryId = intent.getIntExtra("poetryId", 1)
@@ -103,46 +107,62 @@ class PoetryDetailsActivity : BaseActivity() {
                 txt.text = "古诗详情"
                 hear.setBackgroundResource(R.drawable.headset)
                 share.setBackgroundResource(R.drawable.share)
-                val str = "$title$dynasty$author$text"
+                share.visibility = View.GONE
+                val str = "$title,$dynasty,$author,$text"
+
 
                 hear.setOnClickListener {
-//                    try {
-//                        val map = GetParams().returnParams(str)
-//                        Log.i("Tag", map.toString())
-//                        val body = Common().buildParams(map)
-//                        val client = OkHttpClient()
-//                        val request =
-//                            Request.Builder().url("https://api.ai.qq.com/fcgi-bin/aai/aai_tts")
-//                                .post(body)
-//                                .build()
-//                        client.newCall(request).enqueue(object : Callback {
-//                            override fun onFailure(call: Call, e: IOException) {
-//
-//                            }
-//
-//                            override fun onResponse(call: Call, response: Response) {
-//                                val responseData = response.body?.string()
-//                                if (responseData != null) {
-//                                    val info22 =
-//                                        Gson().fromJson(responseData, VoiceData::class.java)
-////                                    mediaPlayer.setDataSource(tempFile.getPath());
-//                                    AudioPlayerUtils.newInstance()
-//                                        .playBase64(this@PoetryDetailsActivity, info22.data.speech)
-//                                    Log.i("Tag", responseData)
-//                                }
-//                            }
-//                        })
-//                    } catch (e: java.lang.Exception) {
-//                        e.printStackTrace()
-//                    }
-                    Log.i("Tag", "test_str:$str")
-                    MTTSDemo(this).speak("你好这里全是中文")
-                }
+                    mTtsController.init(
+                        this,
+                        1303862972,
+                        "AKIDd4HEl3r0d0DA3i4t6NRHsPhKbNuTFiPs",
+                        "f7KJn21mKdHivvgtra6cv73lDRQbfV6j"
+                    )
+                    //设置语速
+                    mTtsController.setVoiceSpeed(0)
+                    //设置音色
+                    mTtsController.setVoiceType(0)
+                    //设置音量
+                    mTtsController.setVoiceVolume(0)
+                    //设置语言
+                    mTtsController.setVoiceLanguage(1)
+                    //设置ProjectId
+                    mTtsController.setProjectId(0)
+                    //接收接口异常
+                    val mTtsExceptionHandler: TtsExceptionHandler =
+                        TtsExceptionHandler { e ->
+                            Log.i("Tag", "tts onRequestException")
+                            Toast.makeText(this@PoetryDetailsActivity, e.errMsg, Toast.LENGTH_SHORT)
+                                .show()
+                        }
 
-                share.setOnClickListener {
-                    MobSDK.init(this)
-                    MobSDK.submitPolicyGrantResult(true, null)
-                    showShare(QQ.NAME)
+                    mTtsController.startTts(
+                        str,
+                        mTtsExceptionHandler,
+                        object : QCloudPlayerCallback {
+                            //播放开始
+                            override fun onTTSPlayStart() {
+                            }
+                            //音频缓冲中
+                            override fun onTTSPlayWait() {
+                            }
+                            //缓冲完成，继续播放
+                            override fun onTTSPlayResume() {
+                            }
+                            //连续播放下一句
+                            override fun onTTSPlayNext() {
+                            }
+                            //播放中止
+                            override fun onTTSPlayStop() {
+                            }
+                            //播放结束
+                            override fun onTTSPlayEnd() {
+                            }
+
+                            override fun onTTSPlayProgress(p0: String?, p1: Int) {
+                            }
+                        })
+
                 }
 
                 collection.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -255,38 +275,13 @@ class PoetryDetailsActivity : BaseActivity() {
             .commitAllowingStateLoss()
     }
 
-    private fun showShare(platform: String?) {
-        val oks = OnekeyShare()
-        //指定分享的平台，如果为空，还是会调用九宫格的平台列表界面
-        if (platform != null) {
-            oks.setPlatform(platform)
-        }
-        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
-        oks.setTitle("标题")
-        // titleUrl是标题的网络链接，仅在Linked-in,QQ和QQ空间使用
-        oks.setTitleUrl("http://sharesdk.cn")
-        // text是分享文本，所有平台都需要这个字段
-        oks.text = "我是分享文本"
-        //分享网络图片，新浪微博分享网络图片需要通过审核后申请高级写入接口，否则请注释掉测试新浪微博
-        oks.setImageUrl("http://www.gulukai.cn/media/head_images/2020011.png/")
-        // url仅在微信（包括好友和朋友圈）中使用
-        oks.setUrl("http://sharesdk.cn")
-        //启动分享
-        oks.show(MobSDK.getContext())
-    }
-
-    override fun onStop() {
-        MTTSDemo(this).stopTTS()
-        super.onStop()
-    }
-
-    override fun onResume() {
-        MTTSDemo(this).stopTTS()
-        super.onResume()
+    override fun onPause() {
+        mTtsController.stop()
+        super.onPause()
     }
 
     override fun onDestroy() {
-        MTTSDemo(this).stopTTS()
+        mTtsController.stop()
         super.onDestroy()
     }
 }

@@ -43,6 +43,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation files('libs\\Msc.jar')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -60,6 +61,11 @@ dependencies {
     implementation 'com.scwang.smart:refresh-header-material:2.0.1'
     implementation 'com.scwang.smart:refresh-header-two-level:2.0.1'
     implementation 'com.scwang.smart:refresh-footer-ball:2.0.1'
+
+    implementation 'com.tencentcloudapi:tencentcloud-sdk-java:3.1.87'
+    implementation 'com.qcloud:cmq-http-client:1.0.7'
+
+    implementation(name: 'libqcloudtts_1.3.2_release', ext: 'aar')
 
 
 }
