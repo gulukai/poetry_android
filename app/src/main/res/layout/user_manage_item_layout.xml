@@ -33,10 +33,10 @@
 
     <TextView
         android:id="@+id/checked_manage_item"
-        android:visibility="gone"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="@drawable/ic_checked" />
+        android:background="@drawable/ic_checked"
+        android:visibility="gone" />
 
 
 </LinearLayout>

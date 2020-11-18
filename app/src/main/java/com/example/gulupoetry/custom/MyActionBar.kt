@@ -23,6 +23,12 @@ class MyActionBar(context: Context?, attrs: AttributeSet?) :
 
     fun setStyle(style: ((back: TextView, txt: TextView, hear: TextView, collection: ToggleButton, share: TextView) -> Unit)) {
         this.style = style
-        style.invoke(back_action_bar, text_action_bar, hear_action_bar, collection_action_bar, share_action_bar)
+        style.invoke(
+            back_action_bar,
+            text_action_bar,
+            hear_action_bar,
+            collection_action_bar,
+            share_action_bar
+        )
     }
 }

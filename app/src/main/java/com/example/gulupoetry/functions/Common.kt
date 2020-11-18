@@ -138,6 +138,7 @@ class Common {
         b = m.matches()
         return b
     }
+
     /**
      * 邮箱地址验证
      * @param str

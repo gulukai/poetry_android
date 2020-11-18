@@ -5,9 +5,9 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:paddingBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/head_image_comment_list"

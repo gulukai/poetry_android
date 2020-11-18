@@ -31,13 +31,13 @@
 
     <ToggleButton
         android:id="@+id/collection_action_bar"
-        android:textOn=""
-        android:textOff=""
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:button="@null" />
+        android:button="@null"
+        android:textOff=""
+        android:textOn="" />
 
     <TextView
         android:id="@+id/share_action_bar"

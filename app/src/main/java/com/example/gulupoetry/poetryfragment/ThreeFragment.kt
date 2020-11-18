@@ -41,7 +41,7 @@ class ThreeFragment : BaseFragment(R.layout.three_fragment_layout) {
                     val headUrl = "http://www.gulukai.cn$head"
                     allCommentList.add(
                         AllCommentDataItem(
-                            headUrl, nickname, time, text, title, poetryId,gollum
+                            headUrl, nickname, time, text, title, poetryId, gollum
                         )
                     )
                 }
@@ -69,7 +69,7 @@ class ThreeFragment : BaseFragment(R.layout.three_fragment_layout) {
                                 startActivity(intent)
                             }
                             holder.itemView.all_head_image_comment_list.setOnClickListener {
-                                if (User.user_no == allCommentList[position].gollum.toLong()){
+                                if (User.user_no == allCommentList[position].gollum.toLong()) {
                                     val intent =
                                         Intent(this.activity, MainActivity::class.java)
                                     intent.putExtra(
@@ -78,7 +78,7 @@ class ThreeFragment : BaseFragment(R.layout.three_fragment_layout) {
                                     )
                                     intent.putExtra("login", 99)
                                     startActivity(intent)
-                                }else{
+                                } else {
                                     val intent =
                                         Intent(this.activity, OtherUserActivity::class.java)
                                     intent.putExtra(

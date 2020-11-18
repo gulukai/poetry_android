@@ -50,20 +50,23 @@ class VerificationActivity : BaseActivity(), View.OnClickListener {
                             if (responseData != null) {
                                 val info =
                                     Gson().fromJson(responseData, GetUserAllMessage::class.java)
-                                Log.i("Tag",responseData)
-                                if (info.code == 200){
+                                Log.i("Tag", responseData)
+                                if (info.code == 200) {
                                     if (email_verification_activity.text.toString() == info.data.email && tel_verification_activity.text.toString() == info.data.tel) {
                                         val intent = Intent(
                                             this@VerificationActivity,
                                             ModifyActivity::class.java
                                         )
-                                        intent.putExtra("gollum",gollum_verification_activity.text.toString())
+                                        intent.putExtra(
+                                            "gollum",
+                                            gollum_verification_activity.text.toString()
+                                        )
                                         startActivity(intent)
-                                    }else{
-                                        Common.myToast(this@VerificationActivity,"请输入正确的信息！！")
+                                    } else {
+                                        Common.myToast(this@VerificationActivity, "请输入正确的信息！！")
                                     }
-                                }else{
-                                    Common.myToast(this@VerificationActivity,"输入正确的账号！")
+                                } else {
+                                    Common.myToast(this@VerificationActivity, "输入正确的账号！")
                                 }
                             }
                         }

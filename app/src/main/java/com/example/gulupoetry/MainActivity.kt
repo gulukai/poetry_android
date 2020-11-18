@@ -128,7 +128,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         time1 = time2
         time2 = System.currentTimeMillis()
         if (time2 - time1 > 3 * 1000) {
-            Common.myToast(this, "再返回一次退出？")
+            Common.myToast(this, "再按一次退出？")
         } else {
             ActivityCollector.finishAllActivity()
         }

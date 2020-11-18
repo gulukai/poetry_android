@@ -4,10 +4,11 @@ import android.content.Context
 import java.io.*
 
 class FileOP {
-    fun save(cxt : Context, fileName : String, fileData : String ): Boolean {
+    fun save(cxt: Context, fileName: String, fileData: String): Boolean {
         var saveFlag = false
         try {
-            val output = cxt.openFileOutput(fileName,
+            val output = cxt.openFileOutput(
+                fileName,
                 Context.MODE_PRIVATE
             )
             val writer = BufferedWriter(
@@ -17,12 +18,13 @@ class FileOP {
                 it.write(fileData)
             }
             saveFlag = true
-        }catch (e : IOException){
+        } catch (e: IOException) {
             e.printStackTrace()
         }
         return saveFlag
     }
-    fun read(cxt : Context, fileName : String): String {
+
+    fun read(cxt: Context, fileName: String): String {
         val str = StringBuilder()
         try {
             val input = cxt.openFileInput(fileName)
@@ -32,7 +34,7 @@ class FileOP {
                     str.append(it)
                 }
             }
-        }catch (e : IOException){
+        } catch (e: IOException) {
             e.printStackTrace()
         }
         return str.toString()

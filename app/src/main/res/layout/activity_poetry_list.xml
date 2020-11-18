@@ -16,11 +16,11 @@
         android:id="@+id/text_poetry_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:gravity="center"
         android:text="数据库暂未收集相关诗集"
         android:textColor="#D1AE54"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_poetry_list_activity"

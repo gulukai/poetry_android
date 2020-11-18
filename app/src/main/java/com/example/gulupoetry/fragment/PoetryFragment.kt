@@ -33,8 +33,8 @@ class PoetryFragment : BaseFragment(R.layout.poetry_fragment_layout), View.OnCli
             classification_poetry_fragment -> {
                 Common().goActivity(this.context!!, ScreenActivity::class.java)
             }
-            search_poetry_fragment->{
-                Common().goActivity(this.context!!,SearchActivity::class.java)
+            search_poetry_fragment -> {
+                Common().goActivity(this.context!!, SearchActivity::class.java)
             }
         }
     }

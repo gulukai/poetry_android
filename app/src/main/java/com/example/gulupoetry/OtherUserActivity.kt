@@ -29,7 +29,7 @@ class OtherUserActivity : BaseActivity() {
         val gollum = intent.getLongExtra("user_no", 1)
         val my_gollum = User.user_no
 
-        if (gollum != 1L){
+        if (gollum != 1L) {
             try {
                 val params = mapOf<String, String>(
                     "gollum" to gollum.toString()
@@ -105,7 +105,7 @@ class OtherUserActivity : BaseActivity() {
                         follow_toggle_activity.setBackgroundResource(R.drawable.follow)
                     }
                 }
-                2->{
+                2 -> {
                     val str = it.obj.toString()
                     val info = Gson().fromJson(str, UserMessageData::class.java)
                     val head = "http://www.gulukai.cn${info.data.head}"
@@ -180,12 +180,12 @@ class OtherUserActivity : BaseActivity() {
                         when (info.code) {
                             200 -> {
                                 Looper.prepare()
-                                Toast.makeText(context,"关注成功！",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "关注成功！", Toast.LENGTH_SHORT).show()
                                 Looper.loop()
                             }
                             202 -> {
                                 Looper.prepare()
-                                Toast.makeText(context,"取消关注！",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "取消关注！", Toast.LENGTH_SHORT).show()
                                 Looper.loop()
                             }
                         }

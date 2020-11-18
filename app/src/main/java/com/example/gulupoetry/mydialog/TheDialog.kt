@@ -8,17 +8,18 @@ import android.view.ViewGroup
 import com.example.gulupoetry.R
 import kotlinx.android.synthetic.main.takephoto_dialog.*
 
-abstract class TheDialog(private val activity: Activity) : Dialog(activity, R.style.ActionSheetDialogStyle){
+abstract class TheDialog(private val activity: Activity) :
+    Dialog(activity, R.style.ActionSheetDialogStyle) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.takephoto_dialog)
 
-        text3.setOnClickListener{
+        text3.setOnClickListener {
             btnPickByTake()
             cancel()
         }
-        text4.setOnClickListener{
+        text4.setOnClickListener {
             btnPickBySelect()
             cancel()
         }
@@ -28,6 +29,7 @@ abstract class TheDialog(private val activity: Activity) : Dialog(activity, R.st
         setViewLocation()
         setCanceledOnTouchOutside(true) //外部点击取消
     }
+
     /**
      * 设置dialog位于屏幕底部
      */

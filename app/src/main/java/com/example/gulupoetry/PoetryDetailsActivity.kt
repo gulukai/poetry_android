@@ -143,18 +143,23 @@ class PoetryDetailsActivity : BaseActivity() {
                             //播放开始
                             override fun onTTSPlayStart() {
                             }
+
                             //音频缓冲中
                             override fun onTTSPlayWait() {
                             }
+
                             //缓冲完成，继续播放
                             override fun onTTSPlayResume() {
                             }
+
                             //连续播放下一句
                             override fun onTTSPlayNext() {
                             }
+
                             //播放中止
                             override fun onTTSPlayStop() {
                             }
+
                             //播放结束
                             override fun onTTSPlayEnd() {
                             }
