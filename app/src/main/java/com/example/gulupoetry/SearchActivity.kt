@@ -95,40 +95,17 @@ class SearchActivity : BaseActivity(), View.OnClickListener {
                     Common.myToast(this, "请输入你需要搜索的关键字！")
                 } else {
                     when (checked) {
-                        "不限" -> {
-                            val intent = Intent(this, PoetryListActivity::class.java)
-                            val bundle = Bundle()
-                            bundle.putString("全局搜索", edit_text_search_activity.text.toString())
-                            intent.putExtras(bundle)
-                            startActivity(intent)
-                        }
                         "题目" -> {
-                            val intent = Intent(this, PoetryListActivity::class.java)
-                            val bundle = Bundle()
-                            bundle.putString("题目", edit_text_search_activity.text.toString())
-                            intent.putExtras(bundle)
-                            startActivity(intent)
+                            searchToActivity("题目")
                         }
                         "作者" -> {
-                            val intent = Intent(this, PoetryListActivity::class.java)
-                            val bundle = Bundle()
-                            bundle.putString("作者", edit_text_search_activity.text.toString())
-                            intent.putExtras(bundle)
-                            startActivity(intent)
+                            searchToActivity("作者")
                         }
                         "朝代" -> {
-                            val intent = Intent(this, PoetryListActivity::class.java)
-                            val bundle = Bundle()
-                            bundle.putString("朝代", edit_text_search_activity.text.toString())
-                            intent.putExtras(bundle)
-                            startActivity(intent)
+                            searchToActivity("朝代")
                         }
                         "标签" -> {
-                            val intent = Intent(this, PoetryListActivity::class.java)
-                            val bundle = Bundle()
-                            bundle.putString("标签", edit_text_search_activity.text.toString())
-                            intent.putExtras(bundle)
-                            startActivity(intent)
+                            searchToActivity("标签")
                         }
                     }
                 }
@@ -182,5 +159,14 @@ class SearchActivity : BaseActivity(), View.OnClickListener {
                 )
             )
         }
+    }
+
+
+    private fun searchToActivity(str: String) {
+        val intent = Intent(this, PoetryListActivity::class.java)
+        val bundle = Bundle()
+        bundle.putString(str, edit_text_search_activity.text.toString())
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 }

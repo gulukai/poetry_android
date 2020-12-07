@@ -58,6 +58,7 @@ class PoetryListActivity : BaseActivity() {
         //http://www.gulukai.cn/poetry/getpoetry/?p1=tag&p2=思乡
         val commonTask = CommonTask()
         commonTask.url = "http://www.gulukai.cn/poetry/getpoetry/?p1=$label&p2=$keyword"
+        commonTask.progressBar = progress
         commonTask.setCallback {
             val info = Gson().fromJson(it, MyPoetryDetailsDataList::class.java)
             if (info.code == 200) {

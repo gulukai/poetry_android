@@ -94,14 +94,6 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
                 } else if (birthday == "") {
                     Common.myToast(this, "请输入生日！")
                 } else {
-                    /*
-                    user_nickname = request.POST.get("user_nickname", "")
-                    user_password = request.POST.get("user_password", "")
-                    user_gender = request.POST.get("user_gender")
-                    user_tel = request.POST.get("user_tel", "")
-                    user_birthday = request.POST.get("user_birthday", "1999-01-01")
-                    user_email = request.POST.get("user_email")
-                    * */
                     try {
                         val params = mapOf<String, String>(
                             "user_nickname" to nick,
@@ -129,14 +121,6 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
                                     val gollum = info.data.user_no
 
                                     val time = System.currentTimeMillis()
-                                    /*
-                                    " id integer primary key autoincrement," +
-                                    "is_login integer," +
-                                    "username text," +
-                                    "gollum text," +
-                                    "current text," +
-                                    "pwd text)"
-                                    * */
                                     val dbHelper = MyDbHelper(this@RegisterActivity, "User.db", 1)
                                     val db = dbHelper.writableDatabase
                                     val value = ContentValues().apply {

@@ -135,7 +135,11 @@ class OtherUserActivity : BaseActivity() {
 
         collection_other_user.setStyle { image, text ->
             image.setBackgroundResource(R.drawable.collection)
-            text.text = "TA收藏的诗集"
+            text.text = "TA的小秘密"
+        }
+
+        collection_other_user.setOnClickListener {
+            Common.myToast(this,"想啥呢？别点了，就这样！！")
         }
 
         follow_toggle_activity.setOnCheckedChangeListener { buttonView, isChecked ->
