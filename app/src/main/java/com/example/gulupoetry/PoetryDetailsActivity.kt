@@ -115,9 +115,9 @@ class PoetryDetailsActivity : BaseActivity() {
                 hear.setOnClickListener {
                     mTtsController.init(
                         this,
-                        1303862972,
-                        "AKIDd4HEl3r0d0DA3i4t6NRHsPhKbNuTFiPs",
-                        "f7KJn21mKdHivvgtra6cv73lDRQbfV6j"
+                        id,
+                        "Sid",
+                        "Skey"
                     )
                     //设置语速
                     mTtsController.setVoiceSpeed(0)
